@@ -8,7 +8,7 @@ O aplicativo será desenvolvido em:
 * Front-end: JavaScript + JSX ([ReactJS](https://facebook.github.io/react/))
 * Banco de dados: [mySQL](https://www.mysql.com/)
 
-A documentação do projeto estará disponível em: [Link](www.google.com)
+A documentação do projeto estará disponível em: [Link](#)
 
 
 
@@ -20,4 +20,5 @@ A documentação do projeto estará disponível em: [Link](www.google.com)
 Os alunos envolvidos são: [**Renan Souza**](https://github.com/reenan), [**Rafael Wachter**](https://github.com/wachter), [**Júlio Renner**](https://github.com/asuha), [**Tcharles Silva**](https://github.com/tcharlezin) e [**Marco Nunes**](https://github.com/marconm85).
 
 O professor é: [**Raphael Leite**](https://github.com/raphaellc)
+
 Cadeira realizada no semestre: **2017/2**
