@@ -17,5 +17,6 @@ A documentação do projeto estará disponível em: [Link](www.google.com)
 
 
 Os alunos envolvidos são: **Renan Souza**, **Rafael Wachter**, **Júlio Renner**, **Tcharles Silva** e **Marco Nunes**.
+
 O professor é: **Raphael Leite**
 Cadeira realizada no semestre: **2017/2**
