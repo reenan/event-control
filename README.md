@@ -6,7 +6,7 @@ Esse aplicativo está sendo desenvolvido para a cadeira de Desenvolvimento de So
 O aplicativo será desenvolvido em:
 * Back-end: PHP ([Laravel](https://laravel.com/))
 * Front-end: JavaScript + JSX ([ReactJS](https://facebook.github.io/react/))
-* Banco de dados: XXX
+* Banco de dados: [mySQL](https://www.mysql.com/)
 
 A documentação do projeto estará disponível em: [Link](www.google.com)
 
@@ -17,7 +17,7 @@ A documentação do projeto estará disponível em: [Link](www.google.com)
 
 
 
-Os alunos envolvidos são: [**Renan Souza**](https://github.com/reenan), [**Rafael Wachter**](https://github.com/wachter), [**Júlio Renner**](https://github.com/asuha), [**Tcharles Silva**](https://github.com/raphaellc) e [**Marco Nunes**](https://github.com/marconm85).
+Os alunos envolvidos são: [**Renan Souza**](https://github.com/reenan), [**Rafael Wachter**](https://github.com/wachter), [**Júlio Renner**](https://github.com/asuha), [**Tcharles Silva**](https://github.com/tcharlezin) e [**Marco Nunes**](https://github.com/marconm85).
 
 O professor é: [**Raphael Leite**](https://github.com/raphaellc)
 Cadeira realizada no semestre: **2017/2**
