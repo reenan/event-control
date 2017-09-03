@@ -1,3 +1,8 @@
+---
+title: This is my title
+layout: post
+---
+
 # O que é?
 
 A ideia do Event Control é prover uma plataforma onde o usuário possa, ao mesmo tempo, ficar por dentro dos últimos eventos e gerenciar e organizar suas próprias conferências.
