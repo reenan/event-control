@@ -8,7 +8,7 @@ O aplicativo será desenvolvido em:
 * Front-end: JavaScript + JSX ([ReactJS](https://facebook.github.io/react/))
 * Banco de dados: [mySQL](https://www.mysql.com/)
 
-A documentação do projeto estará disponível em: [Link](https://reenan.github.io/event-control/)
+A documentação do projeto estará disponível em: [event-control.io](https://reenan.github.io/event-control/)
 
 
 
