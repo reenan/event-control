@@ -14,24 +14,19 @@ export default class MainWrapper extends Component {
 	}
 
 	render() {
+		console.log(this.props.history);
 		return (
 			<div>
 				<SideMenu />
 
-				<Route path="/event-control" render={(route) => {
-					console.log(route);
-					const { state } = route.location;
-					const iFrameURL = getURL(state.section, state.page);
-
-					return (
-						<PageContent url={iFrameURL} />
-					);
-				}} />
-
 				<Route path="/" render={(route) => {
-					console.log('segunda: ', route);
+					let iFrameURL = "";
+					
 					const { state } = route.location;
-					const iFrameURL = getURL(state.section, state.page);
+					if(state != undefined) {
+						iFrameURL = getURL(state.section, state.page);
+						
+					}
 
 					return (
 						<PageContent url={iFrameURL} />
