@@ -18,7 +18,7 @@ export default class MainWrapper extends Component {
 			<div>
 				<SideMenu />
 
-				<Route path="/docs" render={(route) => {
+				<Route path="/" render={(route) => {
 					const { state } = route.location;
 					const iFrameURL = getURL(state.section, state.page);
 
