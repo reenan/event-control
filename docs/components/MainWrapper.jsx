@@ -32,6 +32,20 @@ export default class MainWrapper extends Component {
 						<PageContent url={iFrameURL} />
 					);
 				}} />
+
+				<Route path="/event-control" render={(route) => {
+					let iFrameURL = "";
+					
+					const { state } = route.location;
+					if(state != undefined) {
+						iFrameURL = getURL(state.section, state.page);
+						
+					}
+
+					return (
+						<PageContent url={iFrameURL} />
+					);
+				}} />
 			</div>
 		);
 	}
