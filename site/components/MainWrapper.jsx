@@ -19,6 +19,17 @@ export default class MainWrapper extends Component {
 				<SideMenu />
 
 				<Route path="/event-control" render={(route) => {
+					console.log(route);
+					const { state } = route.location;
+					const iFrameURL = getURL(state.section, state.page);
+
+					return (
+						<PageContent url={iFrameURL} />
+					);
+				}} />
+
+				<Route path="/" render={(route) => {
+					console.log('segunda: ', route);
 					const { state } = route.location;
 					const iFrameURL = getURL(state.section, state.page);
 
