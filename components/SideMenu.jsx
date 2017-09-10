@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import slugify from "slugify";
 import { NavLink } from 'react-router-dom';
-
 import Scrollbar from "./Scrollbar.jsx";
 
 import Sections from "../Sections/sections.js";
