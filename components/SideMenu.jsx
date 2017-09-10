@@ -18,7 +18,7 @@ export default class SideMenu extends Component {
 			<Scrollbar className="side-menu">
 				<NavLink to={{pathname: "/"}}>
 					<div className="logo">
-						<img src="../style/img/logo.png" />
+						<img src="./style/img/logo.png" />
 					</div>
 				</NavLink>
 				<div className="sections">
