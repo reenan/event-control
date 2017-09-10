@@ -21,8 +21,8 @@
   },
   "homepage": "https://github.com/reenan/event-control",
   "scripts": {
-    "build-docs": "webpack -p --progress --colors --config ./docs/webpack.config.js",
-    "start-docs": "webpack-dev-server --hot --progress --colors --inline --config ./docs/webpack.config.js"
+    "build-docs": "webpack -p --progress --colors --config ./webpack.config.js",
+    "start-docs": "webpack-dev-server --hot --progress --colors --inline --config ./webpack.config.js"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

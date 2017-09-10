@@ -21,6 +21,7 @@ export default class MainWrapper extends Component {
 
 				<Route path="/" render={(route) => {
 					let iFrameURL = "";
+					console.log('0', route);
 					
 					const { state } = route.location;
 					if(state != undefined) {
@@ -35,6 +36,7 @@ export default class MainWrapper extends Component {
 
 				<Route path="/event-control" render={(route) => {
 					let iFrameURL = "";
+					console.log('1', route);
 					
 					const { state } = route.location;
 					if(state != undefined) {
@@ -54,6 +56,6 @@ export default class MainWrapper extends Component {
 
 
 function getURL(section, page) {
-	return "../site/sections/"+section+"/"+page+".html";
+	return "./sections/"+section+"/"+page+".html";
 
 }
