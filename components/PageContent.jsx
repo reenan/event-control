@@ -12,8 +12,7 @@ export default class PageContent extends Component {
 		super(props);
 
 		this.state = {
-			loading: false,
-			content: '',
+			content: "",
 			section: "",
 			page: ""
 		}
@@ -31,11 +30,6 @@ export default class PageContent extends Component {
 
 	updateData = (url) => {
 		request.get(url, {
-			beforeSend: () => {
-				this.setState({
-					loading: true
-				});
-			},
 
 			onSuccess: (response) => {
 				let section = "Bem-vindo";
@@ -52,6 +46,8 @@ export default class PageContent extends Component {
 					}
 				}
 
+				this.refs.scroll.scrollTop(0);
+
 				this.setState({
 					loading: false,
 					content: response.text,
@@ -65,14 +61,14 @@ export default class PageContent extends Component {
 	render() {
 		const { props, state } = this;
 		const { history } = props;
-		const { loading, content, section, page } = state;
+		const { content, section, page } = state;
 
 		let contentHTML = {
 			__html: content
 		};
 
 		return (
-			<Scrollbar className="page-content">
+			<Scrollbar ref="scroll" className="page-content">
 				<div className="text-content">
 					<div className="page-header">
 						<h2>{section}</h2>

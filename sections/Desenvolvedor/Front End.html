@@ -1,240 +1,63 @@
-*New to React DnD? [Read the overview](docs-overview.html) before jumping into the docs.*
+<p>O desenvolvimento front-end da aplicação será feito utilizando <strong><a href="https://facebook.github.io/react/" target="_blank">ReactJS</a></strong>.
 
-DragSourceConnector
-===================
+<p>Para uma melhor experiência, é desejado e recomendado que o desenvolvedor tenha um bom conhecimento de JavaScript e que leia a documentação do ReactJS disponível no link acima.</p>
 
-`DragSourceConnector` is an object passed to a collecting function of the [`DragSource`](docs-drag-source.html). Its methods return functions that let you assign the roles to your component's DOM nodes.
+<p>O ambiente de desenvolvimento front-end conta com algumas outras ferramentas:</p>
+<ul>
+  <li>JavaScript ES6 sendo parseado pelo Babel;</li>
+  <li>Estilo SCSS sem conversão para CSS - Embutido direto no JavaScript;</li>
+  <li>Classe API para requisições;</li>
+  <li>Ambiente com hot-reload;</li>
+  <li>Webpack como gerenciador de tarefas;</li>
+  <li>Roteamento com React Router</li>
+</ul>
 
-### Methods
+<hr />
 
-Call the `DragSourceConnector` methods inside your *collecting function*. This will pass the returned functions to your component as props. You can then use them inside `render` or `componentDidMount` to indicate the DOM node roles. Internally they work by attaching a [callback ref](https://facebook.github.io/react/docs/more-about-refs.html#the-ref-callback-attribute) to the React elements you give them. These callbacks connect the DOM nodes of your component to the chosen DnD backend.
+<h5>Componentes já disponíveis:</h5>
 
-* **`dragSource() => (elementOrNode, options?)`**: Returns a function that must be used inside the component to assign the drag source role to a node. By returning `{ connectDragSource: connect.dragSource() }` from your collecting function, you can mark any React element as the draggable node. To do that, replace any `element` with `this.props.connectDragSource(element)` inside the `render` function.
+Segue a lista de componentes reutilizáveis já criados no projeto:
 
-* **`dragPreview() => (elementOrNode, options?)`**: Optional. Returns a function that may be used inside the component to assign the drag preview role to a node. By returning `{ connectDragPreview: connect.dragPreview() }` from your collecting function, you can mark any React element as the drag preview node. To do that, replace any `element` with `this.props.connectDragPreview(element)` inside the `render` function. The drag preview is the node that will be screenshotted by the [HTML5 backend](docs-html5-backend.html) when the drag begins. For example, if you want to make something draggable by a small custom handle, you can mark this handle as the `dragSource()`, but also mark an outer, larger component node as the `dragPreview()`. Thus the larger drag preview appears on the screenshot, but only the smaller drag source is actually draggable. Another possible customization is passing an [`Image`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/Image) instance to `dragPreview` from a lifecycle method like `componentDidMount`. This lets you use the actual images for drag previews. (Note that IE does not support this customization). See the example code below for the different usage examples.
+<ul>
+  <li>Ícone (icon.jsx) [icon, size]</li>
+  <li>Grid (grid.jsx) {row: [gutter], col: [size]}</li>
+  <li>Avatar (avatar.jsx) [url, size]</li>
+  <li>Text (text.jsx) [text, size]</li>
+  <li>Button (button.jsx) [text, size, onClick]</li>
+</ul>
 
-### Method Options
+<hr />
 
-The functions returned by the connector methods also accept options. They need to be passed *inside the component*, for example, `this.props.connectDragSource(<div>...</div>, { dropEffect: 'copy' })`. The options described below are supported by the [HTML5 backend](./docs-html5-backend.html), but may not be supported by the third-party or custom backends.
+<h5>Mixins do SCSS</h5>
 
-#### **Options for `dragSource`**
+Segue a lista de mixins configuradas no SCSS:
 
-* `dropEffect`: Optional. A string. By default, `'move'`. In the browsers that support this feature, specifying `'copy'` shows a special “copying” cursor, while `'move'` corresponds to the “move” cursor. You might want to use this option to provide a hint to the user about whether an action is destructive.
+<ul>
+  <li>transition($args...)</li>
+  <li>box-shadow($size, $color)</li>
+  <li>text-overflow($type)</li>
+  <li>transform($transform)</li>
+  <li>aspect-ratio($width, $height)</li>
+  <li>focal-point-x($x)</li>
+  <li>focal-point-y($y)</li>
+  <li>keyframes($name)</li>
+  <li>animation($content)</li>
+  <li>clearfix()</li>
+  <li>box-sizing($value)</li>
+  <li>vertical-align($value)</li>
+  <li>linear-gradient($args...)</li>
+</ul>
 
-#### **Options for `dragPreview`**
 
-* `captureDraggingState`: Optional. A boolean. By default, `false`. If `true`, the component will learn that it is being dragged immediately as the drag starts instead of the next tick. This means that the screenshotting would occur with `monitor.isDragging()` already being `true`, and if you apply any styling like a decreased opacity to the dragged element, this styling will also be reflected on the screenshot. This is rarely desirable, so `false` is a sensible default. However, you might want to set it to `true` in rare cases, such as if you want to make the custom drag layers work in IE and you need to hide the original element without resorting to an empty drag preview which IE doesn't support.
 
-* `anchorX`: Optional. A number betwen `0` and `1`. By default, `0.5`. Specifies how the offset relative to the drag source node is translated into the the horizontal offset of the drag preview when their sizes don't match. `0` means “dock the preview to the left”, `0.5` means “interpolate linearly” and `1` means “dock the preview to the right”.
+<hr />
 
-* `anchorY`: Optional. A number betwen `0` and `1`. By default, `0.5`. Specifies how the offset relative to the drag source node is translated into the the vertical offset of the drag preview when their sizes don't match. `0` means “dock the preview to the top, `0.5` means “interpolate linearly” and `1` means “dock the preview to the bottom.
+<h5>Variáveis do SCSS</h5>
 
-* `offsetX`: Optional. A number or null if not needed. By default, null. Specifies the vertical offset between the cursor and the drag preview element. If offsetX has a value, anchorX won't be used.
+Segue a lista de variáveis configuradas no SCSS:
 
-* `offsetY`: Optional. A number or null if not needed. By default, null. Specifies the vertical offset between the cursor and the drag preview element. If offsetY has a value, anchorY won't be used.
-
-### Example
-
-Check out [the tutorial](docs-tutorial.html) for more real examples!
-
--------------------
-```js
-var React = require('react');
-var createReactClass = require('create-react-class');
-var DragSource = require('react-dnd').DragSource;
-
-/* ... */
-
-function collect(connect, monitor) {
-  return {
-    connectDragSource: connect.dragSource(),
-    connectDragPreview: connect.dragPreview()
-  };
-}
-
-var ComponentWithCopyEffect = createReactClass({
-  render: function () {
-    var connectDragSource = this.props.connectDragSource;
-
-    return connectDragSource(
-      <div>
-        This div shows a plus icon in some browsers.
-      </div>,
-      { dropEffect: 'copy' }
-    );
-  }
-});
-ComponentWithCopyEffect = DragSource(/* ... */)(ComponentWithCopyEffect);
-
-var ComponentWithHandle = createReactClass({
-  render: function () {
-    var connectDragSource = this.props.connectDragSource;
-    var connectDragPreview = this.props.connectDragPreview;
-
-    return connectDragPreview(
-      <div>
-        This div is draggable by a handle!
-        {connectDragSource(
-          <div>drag me</div>
-        )}
-      </div>
-    );
-  }
-});
-ComponentWithHandle = DragSource(/* ... */)(ComponentWithHandle);
-
-var ComponentWithImagePreview = createReactClass({
-  componentDidMount: function () {
-    var connectDragPreview = this.props.connectDragPreview;
-
-    var img = new Image();
-    img.src = 'http://mysite.com/image.jpg';
-    img.onload = function () {
-      connectDragPreview(img);
-    };
-  },
-
-  render: function () {
-    var connectDragSource = this.props.connectDragSource;
-
-    return connectDragSource(
-      <div>
-        This div shows an image when dragged!
-      </div>
-    );
-  }
-});
-ComponentWithImagePreview = DragSource(/* ... */)(ComponentWithImagePreview);
-```
--------------------
-```js
-import React from 'react';
-import { DragSource } from 'react-dnd';
-
-/* ... */
-
-function collect(connect, monitor) {
-  return {
-    connectDragSource: connect.dragSource(),
-    connectDragPreview: connect.dragPreview()
-  };
-}
-
-class ComponentWithCopyEffect {
-  render() {
-    const { connectDragSource } = this.props;
-
-    return connectDragSource(
-      <div>
-        This div shows a plus icon in some browsers.
-      </div>,
-      { dropEffect: 'copy' }
-    );
-  }
-});
-ComponentWithCopyEffect = DragSource(/* ... */)(ComponentWithCopyEffect);
-
-class ComponentWithHandle {
-  render() {
-    const { connectDragSource, connectDragPreview } = this.props;
-
-    return connectDragPreview(
-      <div>
-        This div is draggable by a handle!
-        {connectDragSource(
-          <div>drag me</div>
-        )}
-      </div>
-    );
-  }
-}
-ComponentWithHandle = DragSource(/* ... */)(ComponentWithHandle);
-
-class ComponentWithImagePreview {
-  componentDidMount() {
-    const { connectDragPreview } = this.props;
-
-    const img = new Image();
-    img.src = 'http://mysite.com/image.jpg';
-    img.onload = () => connectDragPreview(img);
-  }
-
-  render() {
-    const { connectDragSource } = this.props;
-
-    return connectDragSource(
-      <div>
-        This div shows an image when dragged!
-      </div>
-    );
-  }
-}
-ComponentWithImagePreview = DragSource(/* ... */)(ComponentWithImagePreview);
-```
--------------------
-```js
-import React from 'react';
-import { DragSource } from 'react-dnd';
-
-/* ... */
-
-function collect(connect, monitor) {
-  return {
-    connectDragSource: connect.dragSource(),
-    connectDragPreview: connect.dragPreview()
-  };
-}
-
-@DragSource(/* ... */)
-class ComponentWithCopyEffect {
-  render() {
-    const { connectDragSource } = this.props;
-
-    return connectDragSource(
-      <div>
-        This div shows a plus icon in some browsers.
-      </div>,
-      { dropEffect: 'copy' }
-    );
-  }
-});
-
-@DragSource(/* ... */)
-class ComponentWithHandle {
-  render() {
-    const { connectDragSource, connectDragPreview } = this.props;
-
-    return connectDragPreview(
-      <div>
-        This div is draggable by a handle!
-        {connectDragSource(
-          <div>drag me</div>
-        )}
-      </div>
-    );
-  }
-}
-
-@DragSource(/* ... */)
-class ComponentWithImagePreview {
-  componentDidMount() {
-    const { connectDragPreview } = this.props;
-
-    const img = new Image();
-    img.src = 'http://mysite.com/image.jpg';
-    img.onload = () => connectDragPreview(img);
-  }
-
-  render() {
-    const { connectDragSource } = this.props;
-
-    return connectDragSource(
-      <div>
-        This div shows an image when dragged!
-      </div>
-    );
-  }
-}
-```
--------------------
-
+<ul>
+  <li>$primaryColor</li>
+  <li>$secodaryColor</li>
+  <li>$hightlightColor</li>
+</ul>

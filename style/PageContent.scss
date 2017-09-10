@@ -20,6 +20,16 @@
 			border-bottom: 1px solid $detailColor;
 		}
 
+		hr {
+			background-color: $detailColor;
+			border: none;
+			height: 2px;
+		}
+
+		h5 {
+			font-size: 18px;
+		}
+
 		h2 {
 			text-transform: uppercase;
 			margin-bottom: 5px;
@@ -36,6 +46,12 @@
 			font-size: 16px;
 			color: $darkColor;
 			line-height: 29px;
+		}
+
+		ul {
+			li {
+				line-height: 25px;
+			}
 		}
 
 		a {

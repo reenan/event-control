@@ -47,12 +47,16 @@ export default class Scrollbar extends Component {
 		super(props);
 	}
 
+	scrollTop = (top = 0) => {
+		this.refs.scroll.scrollTop(top);
+	}
+
 	render() {
 		let props = this.props;
 		props = update(props, {className: {$set: 'scrollbar-wrapper ' + props.className}});
 
 		return (
-			<Scrollbars {...props}>
+			<Scrollbars {...props} ref="scroll">
 				{this.props.children}
 			</Scrollbars>
 		);
