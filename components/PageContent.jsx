@@ -36,7 +36,7 @@ export default class PageContent extends Component {
 			return item.title == page;
 		})[0].path;
 
-		request.get("../sections/"+sectionPath+"/"+pagePath+".html", {
+		request.get("event-control/sections/"+sectionPath+"/"+pagePath+".html", {
 
 			onSuccess: (response) => {
 				this.refs.scroll.scrollTop(0);
