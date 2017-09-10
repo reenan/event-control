@@ -14,38 +14,21 @@ export default class MainWrapper extends Component {
 	}
 
 	render() {
-		console.log(this.props.history);
 		return (
-			<div>
+			<div className="app">
 				<SideMenu />
-
 				<Route path="/" render={(route) => {
-					let iFrameURL = "";
-					console.log('0', route);
+					let url = "";
 					
 					const { state } = route.location;
 					if(state != undefined) {
-						iFrameURL = getURL(state.section, state.page);
-						
+						url = getURL(state.section, state.page);
+					} else {
+						url = "./sections/home.html"
 					}
 
 					return (
-						<PageContent url={iFrameURL} />
-					);
-				}} />
-
-				<Route path="/event-control" render={(route) => {
-					let iFrameURL = "";
-					console.log('1', route);
-					
-					const { state } = route.location;
-					if(state != undefined) {
-						iFrameURL = getURL(state.section, state.page);
-						
-					}
-
-					return (
-						<PageContent url={iFrameURL} />
+						<PageContent url={url} history={route} />
 					);
 				}} />
 			</div>
@@ -57,5 +40,4 @@ export default class MainWrapper extends Component {
 
 function getURL(section, page) {
 	return "./sections/"+section+"/"+page+".html";
-
 }

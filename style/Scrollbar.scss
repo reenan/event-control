@@ -1,0 +1,55 @@
+@import '_mixins';
+@import '_variables';
+
+.scrollbar-wrapper {
+
+	> div:not(:first-child) {
+		@include transition(background 400ms ease-out !important);
+		background: transparentize($secondaryColor, 0.8) !important;
+		width: 7px !important;
+		right: 4px !important;
+
+		> div {
+			@include transition(background 400ms ease-out !important);
+			width: 7px !important;
+			margin-left: 0px !important;
+			border-radius: 4px !important;
+			background: transparentize($secondaryColor, 0.7) !important;
+
+			&:before {
+				content: '';
+				top: 0;
+				bottom: 0;
+				right: -8px;
+				left: -8px;
+				position: absolute;
+			}
+		}
+
+		&:hover {
+			background: transparentize($secondaryColor, 0.6) !important;
+
+			> div {
+				background: transparentize($secondaryColor, 0.5) !important;
+			}
+		}
+
+		&:before {
+			content: '';
+			top: 0;
+			bottom: 0;
+			right: -8px;
+			left: -8px;
+			position: absolute;
+		}
+
+	}
+
+	/* &:hover {
+		> div:not(:first-child) {
+			> div {
+				background: transparentize($secondaryColor, 0.2) !important;
+			}
+		}
+	} */
+}

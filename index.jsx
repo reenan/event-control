@@ -7,6 +7,7 @@ import { render } from 'react-dom';
 const history = createBrowserHistory();
 
 import MainWrapper from "./components/MainWrapper.jsx";
+import "./style/style.scss";
 
 class App extends Component {
 	static propTypes = {

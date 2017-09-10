@@ -1,0 +1,55 @@
+@import '_variables.scss';
+@import '_mixins.scss';
+
+.page-content {
+	width: calc(100% - 310px) !important;
+	height: 100vh !important;
+	background-color: $lightColor;
+
+	div.text-content {
+		padding-left: 60px;
+		margin-top: 30px;
+		margin-bottom: 45px;
+		width: 85%;
+
+		.page-header {
+			position: relative;
+			padding-bottom: 30px;
+			margin-bottom: 30px;
+			text-align: left;
+			border-bottom: 1px solid $detailColor;
+		}
+
+		h2 {
+			text-transform: uppercase;
+			margin-bottom: 5px;
+			margin-top: 0px;
+		}
+
+		h3 {
+			margin-top: 5px;
+			margin-bottom: 0px;
+			text-transform: uppercase;
+		}
+
+		p {
+			font-size: 16px;
+			color: $darkColor;
+			line-height: 29px;
+		}
+
+		a {
+			@include transition(opacity 400ms ease-out);
+			color: $secondaryColor;
+			text-decoration: none;
+			font-size: 16px;
+			line-height: 25px;
+			opacity: 0.8;
+
+			&:hover, &.active {
+				opacity: 1;
+			}
+		}
+	}
+
+}

@@ -1,19 +1,89 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
+import Scrollbar from "./Scrollbar.jsx";
+
+import "../style/PageContent.scss";
+
+import API from "../API.js";
+const request = new API();
 
 export default class PageContent extends Component {
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			loading: false,
+			content: '',
+			section: "",
+			page: ""
+		}
+	}
+
+	componentDidMount() {
+		this.updateData(this.props.url);
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if(nextProps.url != this.props.url) {
+			this.updateData(nextProps.url);			
+		}
+	}
+
+	updateData = (url) => {
+		request.get(url, {
+			beforeSend: () => {
+				this.setState({
+					loading: true
+				});
+			},
+
+			onSuccess: (response) => {
+				let section = "Bem-vindo";
+				let page = "";
+
+				let locationState = this.props.history.location.state;
+				if(locationState) {
+					if(locationState.section) {
+						section = locationState.section;
+					}
+	
+					if(locationState.page) {
+						page = locationState.page;
+					}
+				}
+
+				this.setState({
+					loading: false,
+					content: response.text,
+					section: section,
+					page: page
+				});
+			}
+		})
 	}
 
 	render() {
-		const { props } = this;
+		const { props, state } = this;
+		const { history } = props;
+		const { loading, content, section, page } = state;
+
+		let contentHTML = {
+			__html: content
+		};
 
 		return (
-			<div>
-				i'm page content prop {props.title}
-				<iframe src={props.url} />
-			</div>
+			<Scrollbar className="page-content">
+				<div className="text-content">
+					<div className="page-header">
+						<h2>{section}</h2>
+						{
+							page ?
+								<h3>{page}</h3> : null
+						}
+					</div>
+					<div dangerouslySetInnerHTML={contentHTML} />
+				</div>
+			</Scrollbar>
 		);
 	}
 }
