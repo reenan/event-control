@@ -1,10 +1,26 @@
 export default [
 	{
 		title: "Introdução",
-		pages: ["Apresentação"]
+		path: "introducao",
+		pages: [
+			{
+				path: "apresentacao",
+				title: "Apresentação"
+			}
+		]
 	},
 	{
 		title: "Desenvolvedor",
-		pages: ["Front End", "Back End"]
+		path: "desenvolvedor",
+		pages: [
+			{
+				path: "front-end",
+				title: "Sobre o front-end"
+			},
+			{
+				path: "back-end",
+				title: "Sobre o back-end"	
+			}
+		]
 	}
 ];

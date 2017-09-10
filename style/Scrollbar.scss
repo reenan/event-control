@@ -5,7 +5,7 @@
 
 	> div:not(:first-child) {
 		@include transition(background 400ms ease-out !important);
-		background: transparentize($secondaryColor, 0.8) !important;
+		background: transparentize($mediumColor, 0.9) !important;
 		width: 7px !important;
 		right: 4px !important;
 
@@ -14,7 +14,7 @@
 			width: 7px !important;
 			margin-left: 0px !important;
 			border-radius: 4px !important;
-			background: transparentize($secondaryColor, 0.7) !important;
+			background: transparentize($mediumColor, 0.9) !important;
 
 			&:before {
 				content: '';
@@ -27,10 +27,10 @@
 		}
 
 		&:hover {
-			background: transparentize($secondaryColor, 0.6) !important;
+			background: transparentize($mediumColor, 0.8) !important;
 
 			> div {
-				background: transparentize($secondaryColor, 0.5) !important;
+				background: transparentize($mediumColor, 0.5) !important;
 			}
 		}
 
@@ -45,11 +45,11 @@
 
 	}
 
-	/* &:hover {
+	&:hover {
 		> div:not(:first-child) {
 			> div {
-				background: transparentize($secondaryColor, 0.2) !important;
+				background: transparentize($secondaryColor, 0.6) !important;
 			}
 		}
-	} */
+	}
 }

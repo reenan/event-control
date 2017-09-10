@@ -12,6 +12,7 @@
 		width: 80%;
    		margin: 30px auto;
 		margin-bottom: 30px;
+		border-bottom: 1px solid transparentize($mediumColor, 0.8);
 	}
 
 	.sections {
@@ -25,7 +26,7 @@
 				text-transform: uppercase;
 				letter-spacing: 1px;
 				margin-bottom: 10px;
-				color: $textColor;
+				color: $darkColor;
 				font-weight: 600;
 			}
 	
@@ -36,15 +37,18 @@
 
 				li {
 					a {
-						@include transition(opacity 400ms ease-out, color 400ms ease-out);
-						color: $textColor;
+						@include transition(color 400ms ease-out, opacity 400ms ease-out);
+						color: $darkColor;
 						text-decoration: none;
-						font-size: 15px;
+						font-size: 14px;
 						line-height: 25px;
+						letter-spacing: 0.4px;
+						opacity: 0.5;
 						
 						&:hover, &.active {
-							color: $secondaryColor;
+							color: $mediumColor;
 							font-weight: 600;
+							opacity: 1;
 						}
 					}
 				}

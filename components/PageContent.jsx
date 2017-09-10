@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import Scrollbar from "./Scrollbar.jsx";
-
 import "../style/PageContent.scss";
 
 import API from "../API.js";
@@ -12,47 +11,38 @@ export default class PageContent extends Component {
 		super(props);
 
 		this.state = {
-			content: "",
-			section: "",
-			page: ""
+			content: ""
 		}
 	}
 
 	componentDidMount() {
-		this.updateData(this.props.url);
+		this.updateData(this.props.section, this.props.page);
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if(nextProps.url != this.props.url) {
-			this.updateData(nextProps.url);			
+		if(nextProps.section != this.props.section || nextProps.page != this.props.page) {
+			this.updateData(nextProps.section, nextProps.page);
 		}
 	}
 
-	updateData = (url) => {
-		request.get(url, {
+	updateData = (section, page) => {
+		let sectionObject = this.props.sections.filter((item) => { 
+			return item.title == section;
+		})[0];
+
+		let sectionPath = sectionObject.path;
+		
+		let pagePath = sectionObject.pages.filter((item) => {
+			return item.title == page;
+		})[0].path;
+
+		request.get("../sections/"+sectionPath+"/"+pagePath+".html", {
 
 			onSuccess: (response) => {
-				let section = "Bem-vindo";
-				let page = "";
-
-				let locationState = this.props.history.location.state;
-				if(locationState) {
-					if(locationState.section) {
-						section = locationState.section;
-					}
-	
-					if(locationState.page) {
-						page = locationState.page;
-					}
-				}
-
 				this.refs.scroll.scrollTop(0);
 
 				this.setState({
-					loading: false,
-					content: response.text,
-					section: section,
-					page: page
+					content: response.text
 				});
 			}
 		})
@@ -60,8 +50,8 @@ export default class PageContent extends Component {
 
 	render() {
 		const { props, state } = this;
-		const { history } = props;
-		const { content, section, page } = state;
+		const { section, page } = props;
+		const { content } = state;
 
 		let contentHTML = {
 			__html: content
@@ -69,15 +59,14 @@ export default class PageContent extends Component {
 
 		return (
 			<Scrollbar ref="scroll" className="page-content">
-				<div className="text-content">
+				<div className="content-wrapper">
 					<div className="page-header">
-						<h2>{section}</h2>
-						{
-							page ?
-								<h3>{page}</h3> : null
-						}
+						<div>
+							<h3>{section}</h3>
+							<h2>{page}</h2>
+						</div>
 					</div>
-					<div dangerouslySetInnerHTML={contentHTML} />
+					<div className="content-text" dangerouslySetInnerHTML={contentHTML} />
 				</div>
 			</Scrollbar>
 		);
