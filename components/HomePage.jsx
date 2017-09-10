@@ -13,7 +13,7 @@ export default class HomePage extends Component {
 			<Scrollbar >
 				oiii sou home
 
-				<Link to={{pathname: '/', search: "?section=Introdução&page=Apresentação"}}>
+				<Link to={{pathname: 'event-control/', search: "?section=Introdução&page=Apresentação"}}>
 					GO!
 				</Link>
 			</Scrollbar>

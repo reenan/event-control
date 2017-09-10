@@ -17,7 +17,7 @@ export default class SideMenu extends Component {
 			<Scrollbar className="side-menu">
 				<NavLink to={{pathname: "/"}}>
 					<div className="logo">
-						<img src="event-control/style/img/logo.png" />
+						<img src="./style/img/logo.png" />
 					</div>
 				</NavLink>
 				<div className="sections">
@@ -98,7 +98,7 @@ class SideMenuPage extends Component {
 
 		return (
 			<li>
-				<NavLink isActive={this.isActive} to={{pathname: "/", search: "?section="+props.section+"&page="+props.title}}>
+				<NavLink isActive={this.isActive} to={{pathname: "event-control/", search: "?section="+props.section+"&page="+props.title}}>
 					{props.title}
 				</NavLink>
 			</li>
