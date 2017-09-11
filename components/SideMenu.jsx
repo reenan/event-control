@@ -10,24 +10,62 @@ import "../style/SideMenu.scss";
 export default class SideMenu extends Component {
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			showMenu: false
+		}
+	}
+
+	toggleMenu = () => {
+		if(this.state.showMenu) {
+			this.hideMenu();
+		} else {
+			this.showMenu();
+		}
+	}
+
+	showMenu = () => {
+		this.setState({
+			showMenu: true
+		});
+	}
+
+	hideMenu = () => {
+		this.setState({
+			showMenu: false 
+		});
 	}
 	
 	render() {
 		return (
-			<Scrollbar className="side-menu">
-				<NavLink to={{pathname: "/event-control/"}}>
-					<div className="logo">
-						<img src="./style/img/logo.png" />
+			<div className={`side-menu ${this.state.showMenu ? 'show' : ''}`}>
+				<div className="mobile">
+					<NavLink to={{pathname: "/event-control/"}}>
+						<div className="logo">
+							<div className="logo-image" />
+						</div>
+					</NavLink>
+
+					<div onClick={this.toggleMenu} className="menu-icon">
+						<div className="line" />
 					</div>
-				</NavLink>
-				<div className="sections">
-					{
-						this.props.sections.map((item, index) => {
-							return <SideMenuSection key={index} title={item.title} pages={item.pages} />
-						})
-					}
 				</div>
-			</Scrollbar>
+
+				<Scrollbar>
+					<NavLink to={{pathname: "/event-control/"}}>
+						<div className="logo">
+							<div className="logo-image" />
+						</div>
+					</NavLink>
+					<div className="sections">
+						{
+							this.props.sections.map((item, index) => {
+								return <SideMenuSection key={index} title={item.title} pages={item.pages} />
+							})
+						}
+					</div>
+				</Scrollbar>
+			</div>
 		);
 	}
 }

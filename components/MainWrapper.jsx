@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router';
+import { Route, Redirect } from 'react-router';
 import SideMenu from "./SideMenu.jsx";
 import queryString from "query-string";
 import Sections from "../sections/sections.js";
@@ -22,7 +22,6 @@ export default class MainWrapper extends Component {
 				}} />
 			
 				<Route path="/event-control/" render={(route) => {
-					let url = "";
 					let { search } = route.location;
 
 					if(search == "") {
@@ -32,7 +31,7 @@ export default class MainWrapper extends Component {
 						return (
 							<div>
 								<SideMenu sections={Sections} />
-								<PageContent sections={Sections} url={url} section={parsedSearch.section} page={parsedSearch.page} />
+								<PageContent sections={Sections} section={parsedSearch.section} page={parsedSearch.page} />
 							</div>
 						);
 					}

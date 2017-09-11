@@ -17,9 +17,19 @@ body { margin: 0; overflow: hidden; };
 		padding-top: 20vh;
 		position: relative;
 
-		> img {
+		> .logo-image {
 			display: block;
 			margin: auto;
+    		background-repeat: no-repeat;
+			background-image: url(./img/logo-home.png);
+			width: 735px;
+    		height: 190px;
+
+			@media screen and (max-width: 768px) {
+				background-image: url(./img/logo-home-mobile.png);
+				height: 90px;
+    			width: 300px;		
+			}
 		}
 
 		> a {

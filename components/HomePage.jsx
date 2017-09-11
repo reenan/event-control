@@ -12,7 +12,7 @@ export default class HomePage extends Component {
 		return (
 			<div className="home">
 				<div className="logo">
-					<img src="./style/img/logo-home.png" />
+					<div className="logo-image" />
 					<Link to={{pathname: '/event-control/', search: "?section=Introdução&page=Apresentação"}}>
 						Saiba Mais
 					</Link>

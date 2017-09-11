@@ -11,7 +11,8 @@ export default class PageContent extends Component {
 		super(props);
 
 		this.state = {
-			content: ""
+			content: "",
+			loading: true
 		}
 	}
 
@@ -38,11 +39,18 @@ export default class PageContent extends Component {
 
 		request.get("./sections/"+sectionPath+"/"+pagePath+".html", {
 
+			beforeSend: () => {
+				this.setState({
+					loading: true 
+				});
+			},
+
 			onSuccess: (response) => {
 				this.refs.scroll.scrollTop(0);
 
 				this.setState({
-					content: response.text
+					content: response.text,
+					loading: false
 				});
 			}
 		})
@@ -51,7 +59,7 @@ export default class PageContent extends Component {
 	render() {
 		const { props, state } = this;
 		const { section, page } = props;
-		const { content } = state;
+		const { content, loading } = state;
 
 		let contentHTML = {
 			__html: content
@@ -59,6 +67,12 @@ export default class PageContent extends Component {
 
 		return (
 			<Scrollbar ref="scroll" className="page-content">
+				{
+					loading ? 
+					<div className="loader-wrapper">
+						<div className="loader" />
+					</div> : null
+				}
 				<div className="content-wrapper">
 					<div className="page-header">
 						<div>
