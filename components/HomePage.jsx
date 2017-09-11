@@ -10,13 +10,14 @@ export default class HomePage extends Component {
 
 	render() {
 		return (
-			<Scrollbar >
-				oiii sou home
-
-				<Link to={{pathname: '/event-control/', search: "?section=Introdução&page=Apresentação"}}>
-					GO!
-				</Link>
-			</Scrollbar>
+			<div className="home">
+				<div className="logo">
+					<img src="./style/img/logo-home.png" />
+					<Link to={{pathname: '/event-control/', search: "?section=Introdução&page=Apresentação"}}>
+						Saiba Mais
+					</Link>
+				</div>
+			</div>
 		);
 	}
 }

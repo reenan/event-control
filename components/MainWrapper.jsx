@@ -17,8 +17,6 @@ export default class MainWrapper extends Component {
 			<div className="app">
 				<Route path="/" render={(route) => {
 					let url = "";
-
-					console.log('route: ', route);
 					let { search } = route.location;
 
 					if(search == "") {

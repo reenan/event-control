@@ -1,7 +1,44 @@
 @import "_variables.scss";
+@import "_mixins.scss";
 
 body { margin: 0; overflow: hidden; };
 
 .app {
 	font-family: 'Roboto', sans-serif;
+}
+
+.home {
+	width: 100vw;
+	height: 100vh;
+	background-color: #0a1c33;
+
+	.logo {
+		text-align: center;
+		padding-top: 20vh;
+		position: relative;
+
+		> img {
+			display: block;
+			margin: auto;
+		}
+
+		> a {
+			@include box-shadow(0px 2px 10px 0px, rgba(0, 0, 0, 0.5));
+			@include transition(all 400ms ease-out);
+			padding: 15px 45px;
+			margin-top: 30px;
+			display: inline-block;
+			background: $darkColor;
+			color: $lightColor;
+			text-transform: uppercase;
+			font-size: 12px;
+			text-decoration: none;
+
+			&:hover {
+				@include box-shadow(0px 2px 12px 0px, rgba(0, 0, 0, 0.8));
+				background: darken($darkColor, 1%);
+				color: darken($lightColor, 30%);
+			}
+		}
+	}
 }
