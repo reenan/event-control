@@ -23,7 +23,6 @@ export default class MainWrapper extends Component {
 			
 				<Route path="/event-control/" render={(route) => {
 					let { search } = route.location;
-
 					if(search == "") {
 						return <HomePage />
 					} else {
