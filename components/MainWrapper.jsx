@@ -15,7 +15,13 @@ export default class MainWrapper extends Component {
 	render() {
 		return (
 			<div className="app">
-				<Route path="/" render={(route) => {
+				<Route exact path="/(#?)" render={(route) => {
+					return <Redirect to={{
+						pathname: "/event-control"
+					}} />
+				}} />
+			
+				<Route path="/event-control/" render={(route) => {
 					let url = "";
 					let { search } = route.location;
 

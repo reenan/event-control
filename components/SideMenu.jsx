@@ -15,7 +15,7 @@ export default class SideMenu extends Component {
 	render() {
 		return (
 			<Scrollbar className="side-menu">
-				<NavLink to={{pathname: "/"}}>
+				<NavLink to={{pathname: "/event-control/"}}>
 					<div className="logo">
 						<img src="./style/img/logo.png" />
 					</div>
