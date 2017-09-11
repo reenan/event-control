@@ -16,6 +16,12 @@ export default class SideMenu extends Component {
 		}
 	}
 
+	componentDidUpdate(prevProps, prevState) {
+		if(this.state.showMenu == prevState.showMenu) {
+			this.hideMenu();
+		}
+	}
+
 	toggleMenu = () => {
 		if(this.state.showMenu) {
 			this.hideMenu();
