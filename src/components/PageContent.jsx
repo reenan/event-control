@@ -37,23 +37,20 @@ export default class PageContent extends Component {
 			return item.title == page;
 		})[0].path;
 
-		request.get("./sections/"+sectionPath+"/"+pagePath+".html", {
-
-			beforeSend: () => {
-				this.setState({
-					loading: true 
-				});
-			},
-
-			onSuccess: (response) => {
+		this.setState({
+			loading: true 
+		}, () => {
+			let promise = request.get("/sections/"+sectionPath+"/"+pagePath+".html");
+		
+			promise.then((response) => {
 				this.refs.scroll.scrollTop(0);
 
 				this.setState({
 					content: response.text,
 					loading: false
 				});
-			}
-		})
+			})
+		});
 	}
 
 	render() {
@@ -61,6 +58,7 @@ export default class PageContent extends Component {
 		const { section, page } = props;
 		const { content, loading } = state;
 
+		console.log('xD');
 		let contentHTML = {
 			__html: content
 		};
