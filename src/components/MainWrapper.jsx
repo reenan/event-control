@@ -30,7 +30,7 @@ export default class MainWrapper extends Component {
 						return (
 							<div>
 								<SideMenu sections={Sections} />
-								<PageContent sections={Sections} section={parsedSearch.section} page={parsedSearch.page} />
+								<PageContent history={this.props.history} sections={Sections} section={parsedSearch.section} page={parsedSearch.page} />
 							</div>
 						);
 					}
