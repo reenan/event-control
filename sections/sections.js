@@ -22,5 +22,15 @@ export default [
 				title: "Sobre o back-end"	
 			}
 		]
+	},
+	{
+		title: "Definições do Projeto",
+		path: "projeto",
+		pages: [
+			{
+				path: "escopo",
+				title: "Escopo"
+			}
+		]
 	}
 ];
