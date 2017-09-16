@@ -15,7 +15,9 @@ export default class PageContent extends Component {
 
 		this.state = {
 			content: "",
-			loading: true
+			loading: true,
+			section: this.props.section,
+			page: this.props.page
 		}
 	}
 
@@ -50,16 +52,17 @@ export default class PageContent extends Component {
 
 				this.setState({
 					content: response.text,
-					loading: false
+					loading: false,
+					section: section,
+					page: page
 				});
 			})
 		});
 	}
 
 	render() {
-		const { props, state } = this;
-		const { section, page } = props;
-		const { content, loading } = state;
+		const { state } = this;
+		const { content, loading, section, page } = state;
 
 		let contentHTML = {
 			__html: content
