@@ -1,11 +1,13 @@
-var webpack = require("webpack");
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var path = require("path");
-var dev = process.env.NODE_ENV !== "production";
+const webpack = require("webpack");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const path = require("path");
 
-var basePath = __dirname;
-var outputPath = path.join(basePath, "build");
-var publicPath = (dev ? '' : '/event-control') + '/build/';
+const dev = process.argv.indexOf('-p') == -1;
+
+const basePath = __dirname;
+const outputPath = path.join(basePath, "build");
+const publicPath = (dev ? '' : '/event-control') + '/build/';
+const devServerPort = 9090;
 
 module.exports = {
 	entry: {
@@ -19,9 +21,12 @@ module.exports = {
     },
 
     devServer: {
-	    publicPath: "http://localhost:8080/build/",
+    	port: devServerPort,
+    	publicPath: "http://localhost:"+devServerPort+"/build/",
 	    contentBase: __dirname,
-	    hot: true
+	    hot: true,
+	    inline: true,
+	    disableHostCheck: true
 	},
 
 	devtool: "source-map",
