@@ -9,6 +9,20 @@ const outputPath = path.join(basePath, "build");
 const publicPath = (dev ? '' : '/event-control') + '/build/';
 const devServerPort = 9090;
 
+console.log('\n---------------------');
+console.log('------- BEGIN -------');
+console.log('---------------------\n');
+
+console.log('------- WEBPACK CONFIG *ADM* -------');
+console.log(' ** ENV VARS **');
+console.log('  - dev: ', dev);
+console.log('  - basePath: ', basePath);
+console.log('  - outputPath: ', outputPath);
+console.log('  - publicPath: ', publicPath);
+console.log('  - __dirname: ', __dirname);
+console.log('----------------------------------------\n');
+
+
 module.exports = {
 	entry: {
 		main: "./index.jsx"

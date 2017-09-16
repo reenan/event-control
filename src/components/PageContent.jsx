@@ -4,6 +4,9 @@ import Scrollbar from "./Scrollbar.jsx";
 import "../style/PageContent.scss";
 
 import API from "../API.js";
+
+const requestURL = window.location.href.indexOf("github") == -1 ? "/sections/" : "/event-control/sections/";
+
 const request = new API();
 
 export default class PageContent extends Component {
@@ -40,7 +43,7 @@ export default class PageContent extends Component {
 		this.setState({
 			loading: true 
 		}, () => {
-			let promise = request.get("/sections/"+sectionPath+"/"+pagePath+".html");
+			let promise = request.get(requestURL + sectionPath + "/" + pagePath + ".html");
 		
 			promise.then((response) => {
 				this.refs.scroll.scrollTop(0);
