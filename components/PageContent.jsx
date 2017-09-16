@@ -27,15 +27,15 @@ export default class PageContent extends Component {
 	}
 
 	updateData = (section, page) => {
-		let sectionObject = this.props.sections.filter((item) => { 
+		let sectionObject = this.props.sections.find((item) => { 
 			return item.title == section;
-		})[0];
+		});
 
 		let sectionPath = sectionObject.path;
 		
-		let pagePath = sectionObject.pages.filter((item) => {
+		let pagePath = sectionObject.pages.find((item) => {
 			return item.title == page;
-		})[0].path;
+		}).path;
 
 		request.get("./sections/"+sectionPath+"/"+pagePath+".html", {
 
