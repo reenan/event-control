@@ -40,8 +40,7 @@ export default class PageContent extends Component {
 		this.setState({
 			loading: true 
 		}, () => {
-			console.log(this.props.history);
-			let promise = request.get("../../sections/"+sectionPath+"/"+pagePath+".html");
+			let promise = request.get("/sections/"+sectionPath+"/"+pagePath+".html");
 		
 			promise.then((response) => {
 				this.refs.scroll.scrollTop(0);

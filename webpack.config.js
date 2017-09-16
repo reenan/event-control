@@ -1,6 +1,11 @@
 var webpack = require("webpack");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var path = require("path");
+var dev = process.env.NODE_ENV !== "production";
+
+var basePath = __dirname;
+var outputPath = path.join(basePath, "build");
+var publicPath = (dev ? '' : '/event-control') + '/build/';
 
 module.exports = {
 	entry: {
@@ -8,9 +13,9 @@ module.exports = {
 	},
 
 	output: {
-        path: path.join(__dirname, "build"),
-        publicPath: "/build/",
-        filename: "[name].js"
+        path: outputPath,
+        filename: "[name].js",
+        publicPath: publicPath,
     },
 
     devServer: {
