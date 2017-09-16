@@ -1,15 +1,23 @@
 var webpack = require("webpack");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var path = require("path");
 
 module.exports = {
 	entry: {
-		index: "./index.jsx"
+		main: "./index.jsx"
 	},
 
 	output: {
-        path: __dirname + "/build",
+        path: path.join(__dirname, "build"),
+        publicPath: "/build/",
         filename: "[name].js"
     },
+
+    devServer: {
+	    publicPath: "http://localhost:8080/build/",
+	    contentBase: __dirname,
+	    hot: true
+	},
 
 	devtool: "source-map",
 	module: {
@@ -24,7 +32,7 @@ module.exports = {
 				exclude: /(node_modules|bower_components)/,
 				loader: "babel-loader",
 				query: {
-					presets: ["es2015", "react", "stage-0"]
+					presets: ["env", "react", "stage-0"]
 				}
 			},
 			{
