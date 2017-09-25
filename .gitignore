@@ -57,3 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
+# vsCode
+.vscode
+
+# Ignore build files
+/public/bundle.js
