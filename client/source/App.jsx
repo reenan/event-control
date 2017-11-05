@@ -3,8 +3,14 @@ import { Route, Redirect } from 'react-router';
 import queryString from "query-string";
 
 
-import Modal from "screens/Partials/Modal/Modal.jsx";
+import Modal, { ModalHeader, ModalContent, ModalFooter } from "screens/Partials/Modal/Modal.jsx";
+import { Title, Subtitle } from "screens/Partials/Text/Text.jsx";
+import { TextButton, SquareButton } from "screens/Partials/Button/Button.jsx";
 
+
+import Login from "screens/Login/Login.jsx";
+
+import 'normalize-css/normalize.css'
 export default class App extends Component {
 	constructor(props) {
 		super(props);
@@ -29,30 +35,30 @@ export default class App extends Component {
 	render() {
 		return (
 			<div className="app">
-				<p onClick={this.openModal}>abrir</p>
 				
-				<Modal onClose={this.closeModal} open={this.state.openModal} />
-				
-				{/*<Route exact path="/(#?)" render={(route) => {
-					return <Redirect to={{
-						pathname: "/event-control"
-					}} />
-				}} />*/}
-			
-				{/*<Route path="/event-control/" render={(route) => {
-					let { search } = route.location;
-					if(search == "") {
-						return <HomePage />
-					} else {
-						let parsedSearch = queryString.parse(search);
-						return (
-							<div>
-								<SideMenu sections={Sections} />
-								<PageContent history={this.props.history} sections={Sections} section={parsedSearch.section} page={parsedSearch.page} />
-							</div>
-						);
-					}
-				}} />*/}
+
+				<Login />
+
+				{/*<p onClick={this.openModal}>abrir</p>
+				<Modal onClose={this.closeModal} open={this.state.openModal}>
+					<ModalHeader>
+						<Title tag="h2">
+							Título
+						</Title>
+						<Subtitle tag="h3">
+							Subtítulo
+						</Subtitle>
+					</ModalHeader>
+
+					<ModalContent>
+						aqui o conteúdo de verdade
+					</ModalContent>
+
+					<ModalFooter>
+						<TextButton text="Cancelar" color="red" />
+						<SquareButton text="Salvar" />
+					</ModalFooter>
+				</Modal>*/}
 			</div>
 		);
 	}

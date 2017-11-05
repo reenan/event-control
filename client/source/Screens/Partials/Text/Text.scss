@@ -1,0 +1,26 @@
+@import "source/_mixins.scss";
+@import "source/_variables.scss";
+
+.title {
+	font-family: 'Roboto', sans-serif;
+	letter-spacing: 0.7px;
+	line-height: 1.2;
+	text-transform: uppercase;
+	color: $dark-blue-6;
+	display: block;
+	font-size: 22px;
+
+	& + .subtitle {
+		margin-top: 5px;
+	}
+}
+
+.subtitle {
+	display: inline-block;
+	font-family: 'Roboto', sans-serif;
+	letter-spacing: 0.5px;
+	font-size: 12px;
+	color: $dark-blue-4;
+	text-transform: uppercase;
+
+}

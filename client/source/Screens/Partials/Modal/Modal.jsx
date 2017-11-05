@@ -17,7 +17,7 @@ export default class Modal extends Component {
 	}
 
 	render() {
-		const { overlay, open } = this.props;
+		const { overlay, open, children } = this.props;
 
 		return (
 			<div className={`modal ${open ? 'open' : ''} ${overlay ? 'overlay' : ''}`}>
@@ -28,10 +28,60 @@ export default class Modal extends Component {
 
 				<div className="modal-inner">
 					<div className="modal-content-area">
-						aqui conteúdo de verdade
+						{children}
 					</div>
 				</div>
 			</div>
 		);
+	}
+}
+
+export class ModalHeader extends Component {
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
+		const { children } = this.props;
+
+		return (
+			<div className="modal-header">
+				{children}
+			</div>
+		)
+	}
+}
+
+export class ModalContent extends Component {
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
+		const { children } = this.props;
+		
+		return (
+			<div className="modal-content">
+				{children}
+			</div>
+		)
+	}
+}
+
+export class ModalFooter extends Component {
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
+		const { children } = this.props;
+		
+		return (
+			<div className="modal-footer">
+				<div>
+					{children}
+				</div>
+			</div>
+		)
 	}
 }
