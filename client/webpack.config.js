@@ -5,13 +5,13 @@ const path = require("path");
 const dev = process.argv.indexOf('-p') == -1;
 
 const basePath = __dirname;
-const outputPath = path.join(basePath, "public");
-const publicPath = (dev ? '' : '/event-control') + '/public/';
+const outputPath = path.join(basePath, "build");
+const publicPath = (dev ? '' : '/event-control') + '/build/';
 const devServerPort = 9090;
 
 module.exports = {
 	entry: {
-		main: "./index.jsx"
+		bundle: "./index.jsx"
 	},
 
 	output: {
@@ -22,15 +22,15 @@ module.exports = {
 
     resolve: {
     	alias: {
-    		source: path.resolve(__dirname, 'source'),
-    		screens: path.resolve(__dirname, 'source/Screens')
+    		source: path.join(basePath, 'source'),
+    		screens: path.join(basePath, 'source/Screens')
     	}
     },
 
     devServer: {
     	port: devServerPort,
-    	publicPath: "http://localhost:"+devServerPort+"/public/",
-	    contentBase: __dirname,
+    	publicPath: "http://localhost:"+devServerPort+"/build/",
+	    contentBase: basePath,
 	    hot: true,
 	    inline: true,
 	    disableHostCheck: true

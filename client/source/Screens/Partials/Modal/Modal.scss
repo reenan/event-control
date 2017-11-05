@@ -1,0 +1,47 @@
+@import "source/_mixins.scss";
+@import "source/_variables.scss";
+
+
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	text-align: center;
+	display: table;
+
+	pointer-events: none;
+	opacity: 0;
+
+	.overlay {
+		@include absolute-fill();
+		background-color: black;
+		pointer-events: none;
+		opacity: 0;
+		z-index: 1;
+	}
+
+
+	&.open {
+		opacity: 1;
+		pointer-events: auto;
+
+		.overlay {
+			opacity: 0.2;
+			pointer-events: auto;
+		}
+	}
+
+	.modal-inner {
+		display: table-cell;
+		vertical-align: middle;
+
+		.modal-content-area {
+			position: relative;
+			z-index: 2;
+			display: inline-block;
+			background-color: red;
+		}
+	}
+}
