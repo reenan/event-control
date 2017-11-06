@@ -77,9 +77,7 @@ export default class App extends Component {
 		return (
 			<div className="app">
 
-				<EventList list={fakeList} />
-				
-
+				{/*<EventList list={fakeList} />*/}
 				{/*<Login />*/}
 
 				{/*<p onClick={this.openModal}>abrir</p>
