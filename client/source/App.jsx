@@ -3,6 +3,8 @@ import { Route, Redirect } from 'react-router';
 import queryString from "query-string";
 
 
+import Menu from "screens/Partials/Menu/Menu.jsx";
+
 import Modal, { ModalHeader, ModalContent, ModalFooter } from "screens/Partials/Modal/Modal.jsx";
 import { Title, Subtitle } from "screens/Partials/Text/Text.jsx";
 import { TextButton, SquareButton } from "screens/Partials/Button/Button.jsx";
@@ -76,6 +78,8 @@ export default class App extends Component {
 
 		return (
 			<div className="app">
+
+				<Menu />
 
 				{/*<EventList list={fakeList} />*/}
 				{/*<Login />*/}
