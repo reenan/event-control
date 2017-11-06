@@ -9,6 +9,10 @@ export default class Menu extends Component {
 
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			openMenu: false
+		}
 	}
 
 	static propTypes = {
@@ -17,11 +21,24 @@ export default class Menu extends Component {
 	static defaultProps = {
 	};
 
+	openMenu = () => {
+		this.setState({
+			openMenu: true 
+		});
+	}
+
+	closeMenu = () => {
+		console.log("closeMenu");
+		this.setState({
+			openMenu: false 
+		});
+	}
+
 	render() {
 		return (
 			<div className="menu">
-				<MenuHeader text="Página ativa" />
-				<SideMenu />
+				<MenuHeader text="Página ativa" iconAction={this.openMenu} />
+				<SideMenu open={this.state.openMenu} closeMenu={this.closeMenu} />
 			</div>
 		);
 	}
@@ -37,13 +54,14 @@ class MenuHeader extends Component {
 	};
 
 	static defaultProps = {
-		icon: "bars"
+		icon: "bars",
+		iconAction: () => {}
 	};
 
 	render() {
 		return (
 			<div className="header">
-				<Icon icon={this.props.icon} size={26} />
+				<Icon icon={this.props.icon} size={26} onClick={this.props.iconAction} />
 				<Content>{this.props.text}</Content>
 			</div>
 		);
@@ -61,6 +79,7 @@ class SideMenu extends Component {
 	};
 
 	static defaultProps = {
+		open: false
 	};
 
 	render() {
@@ -88,11 +107,13 @@ class SideMenu extends Component {
 			}
 		]
 
+		const { open, closeMenu } = this.props;
+
 		return (
-			<div className="side-menu">
-				<div className="overlay" />
+			<div className={`side-menu ${open ? 'open' : ''}`}>
+				<div className="overlay" onClick={closeMenu} />
 				<div className="menu-wrapper">
-					<MenuHeader icon="chevron-left" text="Menu" />
+					<MenuHeader icon="chevron-left" text="Menu" iconAction={closeMenu} />
 				
 					<div className="avatar" style={{backgroundImage: `url(${"source/imgs/avatar.jpg"})`}} />
 					<ul>
