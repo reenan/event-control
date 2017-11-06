@@ -45,13 +45,13 @@
 		@include absolute-fill();		
 
 		pointer-events: none;
-		@include transform(translateX(-250px));
+		@include transform(translateX(-320px));
 		@include transition(transform 400ms ease-out);
 
 		.overlay {
 			@include transition(transform 400ms ease-out, opacity 400ms ease-out);
 			@include absolute-fill();
-			@include transform(translateX(250px));
+			@include transform(translateX(320px));
 			content: "";
 			opacity: 0;
 			background-color: rgba(0, 0, 0, 0.3);
