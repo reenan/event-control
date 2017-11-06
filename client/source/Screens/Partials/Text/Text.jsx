@@ -22,9 +22,9 @@ export class Title extends Component {
 		const { className, children } = this.props;
 		
 		return (
-			<tag className={`title ${className}`}>
+			<this.props.tag className={`title ${className}`}>
 				{children}
-			</tag>
+			</this.props.tag>
 		)
 	}
 }
@@ -48,9 +48,35 @@ export class Subtitle extends Component {
 		const { className, children } = this.props;
 		
 		return (
-			<tag className={`subtitle ${className}`}>
+			<this.props.tag className={`subtitle ${className}`}>
 				{children}
-			</tag>
+			</this.props.tag>
+		)
+	}
+}
+
+export class Content extends Component {
+	constructor(props) {
+		super(props);
+	}
+
+	static defaultProps = {
+		tag: "p",
+		className: ""
+	}
+
+	static PropTypes = {
+		tag: PropTypes.string,
+		className: PropTypes.string
+	}
+
+	render() {
+		const { className, children } = this.props;
+		
+		return (
+			<this.props.tag className={`content ${className}`}>
+				{children}
+			</this.props.tag>
 		)
 	}
 }

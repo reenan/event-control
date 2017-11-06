@@ -1,0 +1,97 @@
+@import "source/_mixins.scss";
+@import "source/_variables.scss";
+
+.event-list {
+	padding: 0;
+	margin-top: 45px;
+
+	.event-list-item {
+		@include box-shadow(0px 3px 5px 0px, rgba(0, 0, 0, 0.15));
+		@include box-sizing(border-box);
+		position: relative;
+		width: 95%;
+		margin: -2px auto;
+		border-radius: 2px;
+		padding: 15px;
+
+		background-repeat: no-repeat;
+		background-position: left;
+
+		& + .event-list-item {
+			margin-top: 15px;
+		}
+
+		.color-layer, .white-layer {
+			@include absolute-fill();
+			z-index: 1;
+		}
+
+		.color-layer {
+			opacity: 0.5;
+		}
+
+		.white-layer {
+			opacity: 0.8;
+			background-color: white;
+		}
+
+		.data {
+			position: relative;
+			z-index: 2;
+
+
+			.title {
+				font-family: 'Oswald', sans-serif;
+				font-weight: bold;
+			}
+
+			.description {
+				@include line-clamp(3);
+				margin-top: 5px;
+
+				&.big {
+					font-size: 18px;
+				}
+
+				&.medium {
+					font-size: 16px;
+				}
+
+				&.small {
+					font-size: 14px;
+				}
+			}
+
+			.info {
+				margin-top: 15px;
+				.content {
+					@include text-overflow(ellipsis);
+					width: 100%;
+					font-size: 13px;
+				}
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
