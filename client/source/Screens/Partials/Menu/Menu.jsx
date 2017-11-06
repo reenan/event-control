@@ -123,6 +123,10 @@ class SideMenu extends Component {
 							})
 						}
 					</ul>
+					<div className="sign-out-wrapper">
+						<Icon icon="sign-out" />
+						<Content>Sair</Content>
+					</div>
 				</div>
 			</div>
 		);

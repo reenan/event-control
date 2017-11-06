@@ -115,6 +115,32 @@
 					}
 				}
 			}
+
+			.sign-out-wrapper {
+				position: absolute;
+				bottom: 15px;
+				right: 15px;
+				text-align: right;
+				cursor: pointer;
+				.icon-component, .content {
+					@include transition(opacity 400ms ease-out, color 400ms ease-out);
+					@include vertical-align(middle);
+					font-size: 14px;
+					opacity: 0.7;
+					color: $red-error;
+				}
+
+				.content {
+					margin-left: 5px;
+				}
+
+				&:hover {
+					.icon-component, .content {
+						color: darken($red-error, 15%);
+						opacity: 1;
+					}
+				}
+			}
 		}
 
 		&.open {
