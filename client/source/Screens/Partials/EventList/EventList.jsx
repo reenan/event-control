@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import { Title, Subtitle, Content } from "screens/Partials/Text/Text.jsx";
+import Icon from "screens/Partials/Icon/Icon.jsx";
 import { TextButton, SquareButton } from "screens/Partials/Button/Button.jsx";
 
 import "./EventList.scss"
@@ -73,16 +74,19 @@ class EventListItem extends Component {
 
 					<ul className="info">
 						<li>
+							<Icon size={14} icon="map-marker" />
 							<Content>
 								{ item.location }
 							</Content>
 						</li>
 						<li>
+							<Icon size={14} icon="clock-o" />
 							<Content>
 								{ item.date }
 							</Content>
 						</li>
 						<li>
+							<Icon size={14} icon="dollar" />
 							<Content>
 								{ item.price }
 							</Content>
