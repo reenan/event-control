@@ -29,7 +29,7 @@ export default class Login extends Component {
 
 
 				<p className="use-terms">
-					Ao me nscrever eu estou aceitando os <a href="#">termos de uso</a> e <a href="#">política de privacidade</a>
+					Ao me inscrever eu estou aceitando os <a href="#">termos de uso</a> e <a href="#">política de privacidade</a>
 				</p>
 			</div>
 		);
