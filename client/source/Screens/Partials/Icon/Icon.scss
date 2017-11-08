@@ -1,0 +1,21 @@
+@import "source/_mixins.scss";
+@import "source/_variables.scss";
+
+.icon-component {
+	@include vertical-align(middle);
+	text-align: center;
+	min-width: 15px;
+	$textClass-list: blue-1,  blue-2,   blue-3,   blue-4,   green-1,   green-2, green-3,  green-4,   green-5, red-1,    red-2,    red-3,    red-4, red-error,  red-5, red-6,  dark-blue-1,   dark-blue-2, dark-blue-3,   dark-blue-4,  dark-blue-5,   dark-blue-6, dark-blue-7, gray-1,   gray-2,    gray-3,  gray-4, gray-5, gray-6, gray-7;
+	$textColor-list: $blue-1,  $blue-2, $blue-3,  $blue-4,  $green-1, $green-2, $green-3, $green-4, $green-5, $red-1,   $red-2,   $red-3,   $red-4, $red-error,  $red-5, $red-6, $dark-blue-1, $dark-blue-2, $dark-blue-3, $dark-blue-4, $dark-blue-5, $dark-blue-6, $dark-blue-7, $gray-1,  $gray-2,  $gray-3,  $gray-4, $gray-5, $gray-6, $gray-7;
+
+	@for $i from 1 through length($textClass-list) {
+		$color: nth($textColor-list, $i);
+		$class: nth($textClass-list, $i);
+
+		&.#{$class} {
+			@include transition(color 400ms ease-out);
+			color: $color;
+		}
+
+	}
+}
