@@ -80,8 +80,8 @@ export default class FacebookLogin extends Component {
       }
 
     render() { 
-        if (this.state.loggedIn) 
-            return ( <Redirect to={ {pathname: "/home"} } />)
+        if (this.state.loggedIn)
+            return ( <Redirect to="/home" />)
         
         return ( <li onClick={this.onLoginPress} /> )
     }
