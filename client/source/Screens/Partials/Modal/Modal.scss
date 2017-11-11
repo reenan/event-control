@@ -1,0 +1,80 @@
+@import "source/_mixins.scss";
+@import "source/_variables.scss";
+
+.modal {
+	@include transition(opacity 400ms ease-out);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	text-align: center;
+	display: table;
+
+	pointer-events: none;
+	opacity: 0;
+
+	.overlay {
+		@include absolute-fill();
+		@include transition(opacity 400ms)
+		background-color: black;
+		pointer-events: none;
+		opacity: 0;
+		z-index: 1;
+	}
+
+	&.open {
+		opacity: 1;
+		pointer-events: auto;
+
+		.overlay {
+			opacity: 0.2;
+			pointer-events: auto;
+		}
+	}
+
+	.modal-inner {
+		display: table-cell;
+		vertical-align: middle;
+
+		.modal-content-area {
+			@include box-shadow(0px 3px 5px 0px, rgba(0, 0, 0, 0.15));
+			position: relative;
+			z-index: 2;
+			display: inline-block;
+			background-color: white;
+			padding: 45px;
+			border-radius: 5px;
+		}
+
+
+		.modal-header {
+			text-align: left;
+			padding-bottom: 30px;
+			border-bottom: 1px solid $dark-blue-6;
+		}
+
+		.modal-content {
+			margin-top: 30px;
+		}
+
+		.modal-footer {
+			margin-bottom: -45px;
+			margin-top: 45px;
+			height: 60px;
+			margin-left: -45px;
+			margin-right: -45px;
+			background-color: $soft-gray;
+			text-align: right;
+
+			> div {
+				line-height: 60px;
+				padding-right: 45px;
+
+				.button-wrapper + .button-wrapper {
+					margin-left: 10px;
+				}
+			}
+		}
+	}
+}
