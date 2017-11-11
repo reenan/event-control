@@ -79,7 +79,14 @@ export default class App extends Component {
 		return (
 			<div className="app">
 
-				<Menu />
+				<Route path="/" render={(route) => {
+					return <Login />
+				}} />
+
+				<Route path="/home" render={(route) => {
+					return <Menu />
+				}} />
+
 
 				{/*<EventList list={fakeList} />*/}
 				{/*<Login />*/}
