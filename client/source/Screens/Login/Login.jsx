@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { Title, Subtitle } from "screens/Partials/Text/Text.jsx";
 import { TextButton, SquareButton } from "screens/Partials/Button/Button.jsx";
+import FacebookLogin from "./Partials/FacebookLogin.jsx"
 
 import "./Login.scss"
 export default class Login extends Component {
@@ -21,7 +22,7 @@ export default class Login extends Component {
 					<p>connect with</p>
 
 					<ul>
-						<li className="facebook" />
+						<FacebookLogin />
 						<li className="twitter" />
 						<li className="gplus" />
 					</ul>
@@ -29,7 +30,7 @@ export default class Login extends Component {
 
 
 				<p className="use-terms">
-					Ao me nscrever eu estou aceitando os <a href="#">termos de uso</a> e <a href="#">política de privacidade</a>
+					Ao me inscrever eu estou aceitando os <a href="#">termos de uso</a> e <a href="#">política de privacidade</a>
 				</p>
 			</div>
 		);
