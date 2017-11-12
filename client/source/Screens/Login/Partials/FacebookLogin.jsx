@@ -1,7 +1,12 @@
 import React, {Component} from 'react';
 import { Redirect } from 'react-router';
 
+const backend = {
+    url: "http://localhost:8000",
+} 
+
 export default class FacebookLogin extends Component {
+
     constructor(props) {
         super(props);
 
@@ -24,6 +29,65 @@ export default class FacebookLogin extends Component {
         this.setState({
             loggedIn: true
         });
+        this.createUser()
+    }
+
+    
+    getUser = async function() {
+        let userInfo = await this.getUserInformationAsync();
+        
+        let response = await this.checkIfUserAlreadyExists();
+
+        if (response.id) {
+            //fazer autenticacao
+        } else {
+            createUser();
+            //fazer autenticacao
+        }
+        
+    }
+    
+    checkIfUserAlreadyExists = async function(id) {
+        return fetch(`${backend}/login?id=${id}`, {
+            mode: "cors"
+        })
+    }
+
+    createUser() {
+        let body = new FormData();
+        
+        for(let property in userInfo) {
+            body.append(property, userInfo[property])
+        }
+        
+        let response = await fetch(`${backend}/login`, {
+            method: "POST",        
+            mode: "cors",
+            body: body
+        });
+    }
+
+    // getUserInformationAsync() {
+    //     return new Promise((resolve, reject) => {
+    //         FB.api("/me", {fields: 'id, name, birthday, hometown, email, picture'}, (response) => {
+    //             if (response.error) {
+    //                 reject(response.error)
+    //             }
+    //             resolve(response);
+    //         });
+    //     });
+    // }
+    
+
+    getUserInformationAsync = async function() {
+        return new Promise((resolve, reject) => {
+            FB.api("/me", {fields: 'id, name, birthday, hometown, email, picture'}, (response) => {
+                if (response.error) {
+                    reject(response.error)
+                }
+                resolve(response);
+            });
+        });
     }
 
     onLoginPress() {
@@ -43,7 +107,6 @@ export default class FacebookLogin extends Component {
     tryToLogin() {
         let requiredInfo = 'user_birthday,user_hometown,email,public_profile';
         FB.login((response) => {
-            debugger;
             this.userLoggedIn()
         }, {scope: requiredInfo})
     }
