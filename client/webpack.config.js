@@ -10,7 +10,7 @@ const devServerPort = 9090;
 
 module.exports = {
 	entry: {
-		bundle: "./index.jsx"
+		bundle: ["babel-polyfill", "./index.jsx"]
 	},
 
 	output: {
@@ -48,7 +48,7 @@ module.exports = {
 				exclude: /(node_modules|bower_components)/,
 				loader: "babel-loader",
 				query: {
-					presets: ["env", "react", "stage-0"]
+					presets: ["es2015", "react", "stage-0"]
 				}
 			},
 			{
