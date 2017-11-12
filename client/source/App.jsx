@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Redirect } from 'react-router';
+import { Route } from 'react-router-dom';
 import queryString from "query-string";
 
 
@@ -78,14 +78,11 @@ export default class App extends Component {
 
 		return (
 			<div className="app">
+				
+				<Route path="/home" component={Menu} />
 
-				<Route path="/" render={(route) => {
-					return <Login />
-				}} />
+				<Route path="/" component={Login} />
 
-				<Route path="/home" render={(route) => {
-					return <Menu />
-				}} />
 
 
 				{/*<EventList list={fakeList} />*/}

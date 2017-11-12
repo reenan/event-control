@@ -60,3 +60,6 @@ typings/
 # VsCode
 .vscode
 .DS_Store
+
+# React
+client/build/*
