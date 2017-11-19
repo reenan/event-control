@@ -1,0 +1,11 @@
+@import "source/_mixins.scss";
+@import "source/_variables.scss";
+
+.content {
+	display: inline-block;
+	font-family: 'Roboto', sans-serif;
+	letter-spacing: 0.5px;
+	font-size: 16px;
+	color: $dark-blue-4;
+	line-height: 1.3;
+}
