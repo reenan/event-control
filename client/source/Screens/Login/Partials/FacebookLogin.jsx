@@ -48,19 +48,19 @@ export default class FacebookLogin extends Component {
     }
     
     checkIfUserAlreadyExists = async function(id) {
-        return fetch(`${backend}/login?id=${id}`, {
+        return fetch(`${backend.url}/login?id=${id}`, {
             mode: "cors"
         })
     }
 
-    createUser() {
+    createUser = async function() {
         let body = new FormData();
         
         for(let property in userInfo) {
             body.append(property, userInfo[property])
         }
         
-        let response = await fetch(`${backend}/login`, {
+        let response = await fetch(`${backend.url}/login`, {
             method: "POST",        
             mode: "cors",
             body: body
