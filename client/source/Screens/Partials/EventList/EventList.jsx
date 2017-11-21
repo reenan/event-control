@@ -10,11 +10,15 @@ export default class EventList extends Component {
 		super(props);
 	}
 
+	static defaultProps = {
+		list: []
+	}
+
 	render() {
 		const { list } = this.props;
 
 		return (
-			<div id="listComponent" className="event-list">
+			<div className="event-list">
 				<ul>
 					{
 						list.map((item, index) => {
