@@ -16,12 +16,12 @@ export default class MenuItem extends Component {
     };
 
     static defaultProps = {
-        active: false    
+        active: false
     };
 
     render() {
         return (
-            <li key={this.props.route}>
+            <li>
                 <Icon size={16} icon={this.props.item.icon}/>
                 <NavLink to={`/${this.props.route}`} className="content">
                     {this.props.item.title}
