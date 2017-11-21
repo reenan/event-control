@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import queryString from "query-string";
 
-
-import Menu from "screens/Home/Partials/Menu/Menu.jsx";
 
 import Modal, { ModalHeader, ModalContent, ModalFooter } from "screens/Partials/Modal/Modal.jsx";
 import { Title, Subtitle } from "screens/Partials/Text/Text.jsx";
@@ -11,7 +9,9 @@ import { TextButton, SquareButton } from "screens/Partials/Button/Button.jsx";
 
 import Login from "screens/Login/Login.jsx";
 
-import FutureEvents from "screens/Home/Partials/Menu/Partials/FutureEvents/FutureEvents.jsx";
+import FutureEvents from "screens/FutureEvents/FutureEvents.jsx";
+
+import Menu from "screens/Partials/Menu/Menu.jsx";
 
 import 'reset-css/reset.css';
 
@@ -40,10 +40,16 @@ export default class App extends Component {
 
 		return (
 			<div className="app">
+				<Menu />
 
-				<Route path="/" component={Menu} />
-				<Route path="/futureEvents" component={FutureEvents} />
-				<Route path="/login" component={Login} />
+				{/* Aqui é a lista de rotas disponíveis o que cada uma deve renderizar, 
+					o componente "Switch" faz renderizara primeira que der match */}
+				<Switch>
+					{/* Rota sempre slugificada (minúsculo, alfanumérico)*/}
+					<Route path="/future-events" component={FutureEvents} />
+					<Route path="/login" component={Login} />
+				</Switch>
+
 
 				{/* <EventList list={fakeList} /> */}
 				{/*<Login />*/}

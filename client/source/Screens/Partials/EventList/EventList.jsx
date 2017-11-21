@@ -10,6 +10,10 @@ export default class EventList extends Component {
 		super(props);
 	}
 
+	static defaultProps = {
+		list: []
+	}
+
 	render() {
 		const { list } = this.props;
 
