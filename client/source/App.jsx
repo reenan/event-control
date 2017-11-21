@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import queryString from "query-string";
 
 
@@ -40,7 +40,7 @@ export default class App extends Component {
 
 		return (
 			<div className="app">
-				<Menu />
+				<Menu history={this.props.history} />
 
 				{/* Aqui é a lista de rotas disponíveis o que cada uma deve renderizar, 
 					o componente "Switch" faz renderizara primeira que der match */}
@@ -48,6 +48,14 @@ export default class App extends Component {
 					{/* Rota sempre slugificada (minúsculo, alfanumérico)*/}
 					<Route path="/future-events" component={FutureEvents} />
 					<Route path="/login" component={Login} />
+
+				{/*
+					Exemplo de redirect: rota "/" return um redirect para "/login"
+					<Route path="/" render={() => {
+							return <Redirect to="/login" />
+					}} />
+				*/}
+
 				</Switch>
 
 

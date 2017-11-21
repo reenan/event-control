@@ -16,12 +16,6 @@ export default class Menu extends Component {
 		}
 	}
 
-	static propTypes = {
-	};
-
-	static defaultProps = {
-	};
-
 	openMenu = () => {
 		this.setState({
 			openMenu: true 
@@ -36,10 +30,15 @@ export default class Menu extends Component {
 	}
 
 	render() {
+
+		const { history } = this.props;
+		const { location } = history;
+		let title = location.state && location.state.title ? location.state.title : "Renderizando página sem título"; 
+
 		return (
 			
 			<div className="menu">
-				<MenuHeader text="Página ativa" iconAction={this.openMenu} />
+				<MenuHeader text={title} iconAction={this.openMenu} />
 				<SideMenu open={this.state.openMenu} closeMenu={this.closeMenu} />
 			</div>
 		);
@@ -162,7 +161,7 @@ class MenuItem extends Component {
 
         return (
             <li>
-                <NavLink to={`/${pathname}`} className="content">
+                <NavLink to={{pathname: `/${pathname}`, state: { title: item.title }}} className="content">
                 	<Icon size={16} icon={item.icon}/>
                     <Content className="small bold">{item.title}</Content>
                 </NavLink>
