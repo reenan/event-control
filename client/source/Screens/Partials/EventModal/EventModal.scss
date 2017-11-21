@@ -1,0 +1,10 @@
+@import "source/_mixins.scss";
+@import "source/_variables.scss";
+
+
+.event-modal {
+	.modal-content-area {
+		width: 90vw;
+		height: 90vh;
+	}
+}
