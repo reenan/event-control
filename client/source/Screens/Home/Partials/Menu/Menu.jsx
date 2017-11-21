@@ -127,35 +127,35 @@ class SideMenu extends Component {
 
 		let menuList = [
 			{
-				key: "futura",
+				route: "futureEvents",
 				info: {
 					title: "Próximos eventos",
 					icon: "bookmark"
 				}
 			},
 			{
-				key: "destaque",
+				route: "destaque",
 				info: {
 					title: "Destacados",
 					icon: "star"
 				}
 			},
 			{
-				key: "mapa",
+				route: "mapa",
 				info: {
 					title: "Mapa de eventos",
 					icon: "map-marker"
 				}
 			},
 			{
-				key: "meus",
+				route: "meus",
 				info: {
 					title: "Meus eventos",
 					icon: "pencil"
 				}
 			},
 			{
-				key: "historico",
+				route: "historico",
 				info : {
 					title: "Histórico",
 					icon: "clock-o"
@@ -175,7 +175,7 @@ class SideMenu extends Component {
 					<ul>
 						{
 							menuList.map((menuItem, index) => {
-								return <MenuItem route={menuItem.key} item={menuItem.info} />
+								return <MenuItem key={index.toString()} route={menuItem.route} item={menuItem.info} />
 							})
 						}
 					</ul>
