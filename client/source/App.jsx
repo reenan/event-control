@@ -49,6 +49,10 @@ export default class App extends Component {
 					<Route path="/future-events" component={FutureEvents} />
 					<Route path="/login" component={Login} />
 
+					<Route exact path="/" render={() => {
+						return <Redirect to="/future-events"/>
+					}}/>
+
 				{/*
 					Exemplo de redirect: rota "/" return um redirect para "/login"
 					<Route path="/" render={() => {

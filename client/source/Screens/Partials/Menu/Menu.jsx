@@ -87,6 +87,20 @@ class SideMenu extends Component {
 
 		let menuList = [
 			{
+				pathname: "my-events",
+				info: {
+					title: "Meus eventos",
+					icon: "pencil"
+				}
+			},
+			{
+				pathname: "highlight-events",
+				info: {
+					title: "Destacados",
+					icon: "star"
+				}
+			},
+			{
 				pathname: "future-events",
 				info: {
 					title: "Próximos eventos",
@@ -94,28 +108,14 @@ class SideMenu extends Component {
 				}
 			},
 			{
-				pathname: "destaque",
-				info: {
-					title: "Destacados",
-					icon: "star"
-				}
-			},
-			{
-				pathname: "mapa",
+				pathname: "map-events",
 				info: {
 					title: "Mapa de eventos",
 					icon: "map-marker"
 				}
 			},
 			{
-				pathname: "meus",
-				info: {
-					title: "Meus eventos",
-					icon: "pencil"
-				}
-			},
-			{
-				pathname: "historico",
+				pathname: "historic",
 				info : {
 					title: "Histórico",
 					icon: "clock-o"
