@@ -33,11 +33,15 @@ export default class EventModal extends Component {
 		console.log(input);
 	}
 
+	createEvent = () => {
+
+	}
+
 	render() {
 		return (
 			<div>
 				<p onClick={this.openModal}>abrir</p>
-				<Modal className="event-modal" onClose={this.closeModal} open={true || this.state.openModal}>
+				<Modal className={this.state.openModal ? 'event-modal': 'close'} onClose={this.closeModal} open={true || this.state.openModal}>
 					<ModalHeader>
 						<Title tag="h2">
 							Criação de Evento
@@ -48,12 +52,17 @@ export default class EventModal extends Component {
 					</ModalHeader>
 
 					<ModalContent>
-						<InputText name="teste" label="Label" value="valor" onChange={this.changeInput} />
+						<InputText label="Nome" onChange={this.changeName} />
+						<InputText label="Descrição" onChange={this.changeDescription} />
+						<InputText label="Endereço" onChange={this.changeAddress} />
+						<InputText label="Data" onChange={this.changeDate} />
+						<InputText label="Horário" onChange={this.changeDateTime} />
+						<InputText label="Valor mínimo" onChange={this.changeValue} />
 					</ModalContent>
 
 					<ModalFooter>
-						<TextButton text="Cancelar" color="red" />
-						<SquareButton text="Salvar" />
+						<TextButton onClick={this.closeModal} text="Cancelar" color="red" />
+						<SquareButton onClick={this.createEvent} text="Salvar" />
 					</ModalFooter>
 				</Modal>
 			</div>

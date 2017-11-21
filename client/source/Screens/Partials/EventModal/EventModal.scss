@@ -3,8 +3,14 @@
 
 
 .event-modal {
+	z-index: 3;
+	
 	.modal-content-area {
 		width: 90vw;
 		height: 90vh;
 	}
+}
+
+.close {
+	visibility: hidden;
 }
