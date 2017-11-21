@@ -26,9 +26,6 @@ export default class MenuItem extends Component {
                 <NavLink to={`/${this.props.route}`} className="content">
                     {this.props.item.title}
                 </NavLink>
-                {/* <Content tag="a">
-                    {this.props.item.title}
-                </Content> */}
             </li>
         );
     }
