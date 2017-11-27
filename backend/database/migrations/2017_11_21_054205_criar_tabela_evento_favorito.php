@@ -17,10 +17,10 @@ class CriarTabelaEventoFavorito extends Migration
             $table->increments('id');
 
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on("users");
+            // $table->foreign('user_id')->references('id')->on("users");
 
             $table->integer('evento_id')->unsigned();
-            $table->foreign('evento_id')->references('id')->on("eventos");
+            // $table->foreign('evento_id')->references('id')->on("eventos");
 
             $table->timestamps();
         });

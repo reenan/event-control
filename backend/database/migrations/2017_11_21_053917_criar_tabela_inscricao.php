@@ -17,13 +17,13 @@ class CriarTabelaInscricao extends Migration
             $table->increments('id');
 
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on("users");
+            // $table->foreign('user_id')->references('id')->on("users");
 
             $table->integer('lote_ingresso_id')->unsigned();
-            $table->foreign('lote_ingresso_id')->references('id')->on("lote_ingressos");
+            // $table->foreign('lote_ingresso_id')->references('id')->on("lote_ingressos");
 
             $table->integer('evento_id')->unsigned();
-            $table->foreign('evento_id')->references('id')->on("eventos");
+            // $table->foreign('evento_id')->references('id')->on("eventos");
 
             $table->boolean('pagamento_realizado');
             $table->boolean('presente');
