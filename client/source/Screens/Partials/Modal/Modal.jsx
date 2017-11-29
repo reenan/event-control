@@ -9,7 +9,8 @@ export default class Modal extends Component {
 
 	static defaultProps = {
 		overlay: true,
-		open: false
+		open: false,
+		className: ""
 	}
 
 	close = () => {
@@ -17,10 +18,10 @@ export default class Modal extends Component {
 	}
 
 	render() {
-		const { overlay, open, children } = this.props;
+		const { overlay, open, children, className } = this.props;
 
 		return (
-			<div className={`modal ${open ? 'open' : ''} ${overlay ? 'overlay' : ''}`}>
+			<div className={`${className} modal ${open ? 'open' : ''} ${overlay ? 'overlay' : ''}`}>
 				{
 					overlay ?
 						<div onClick={this.close} className={`overlay`} /> : null
