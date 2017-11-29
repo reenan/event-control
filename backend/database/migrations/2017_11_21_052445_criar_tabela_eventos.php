@@ -19,11 +19,11 @@ class CriarTabelaEventos extends Migration
 
             $table->increments('id');
             $table->string('descricao');
-            $table->integer('endereco_id')->unsigned();
-            $table->date('data_inicio');
+            $table->string('endereco');
+            $table->string('nome');
+            $table->string('valor');
             $table->date('data_fim');
-            $table->string('hora_inicio');
-            $table->string('hora_fim');
+            $table->boolean('favorito')->default(false);
             $table->timestamps();
         });
     }

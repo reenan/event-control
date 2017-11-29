@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inscricao;
+use Carbon\Carbon;
 use Log;
 use App\Models\Evento;
 use Illuminate\Http\Request;
@@ -30,6 +31,28 @@ class EventoController extends Controller
         try
         {
             return Inscricao::where("user_id", "=", $id)->get();
+        }
+        catch (\Exception $ex) {
+            return response()->json(['error' => $ex->getMessage()], 500);
+        }
+    }
+
+    public function listarFavoritos()
+    {
+        try
+        {
+            return Evento::where("favorito", "=", true)->get();
+        }
+        catch (\Exception $ex) {
+            return response()->json(['error' => $ex->getMessage()], 500);
+        }
+    }
+
+    public function exibirHistorico()
+    {
+        try
+        {
+            return Evento::where("data_fim", "<", Carbon::now())->get();
         }
         catch (\Exception $ex) {
             return response()->json(['error' => $ex->getMessage()], 500);

@@ -26,13 +26,8 @@ $router->group(['prefix' => 'api/v1'], function ($app) {
         $rota->get('user/{id}', 'EventoController@listarEventos');
     });
 
-    $app->group(['prefix' => 'endereco'], function ($rota) {
-        $rota->get('', 'EnderecoController@index');
-        $rota->get('{id}', 'EnderecoController@find');
-        $rota->post('', 'EnderecoController@store');
-        $rota->put('{id}', 'EnderecoController@update');
-        $rota->delete('{id}', 'EnderecoController@delete');
-    });
+    $app->get('favoritos', 'EventoController@listarFavoritos');
+    $app->get('historico', 'EventoController@exibirHistorico');
 
     $app->group(['prefix' => 'evento-favorito'], function ($rota) {
         $rota->get('', 'EventoFavoritoController@index');

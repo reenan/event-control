@@ -8,18 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Evento extends Model
 {
     protected $fillable = [
-        'endereco_id',
+        'nome',
+        'endereco',
         'descricao',
-        'data_inicio',
+        'favorito',
+        'valor',
         'data_fim',
-        'hora_inicio',
-        'hora_fim'
     ];
-
-    public function endereco()
-    {
-        return $this->belongsTo(Endereco::class);
-    }
 
     public function getDataInicioAttribute($value)
     {

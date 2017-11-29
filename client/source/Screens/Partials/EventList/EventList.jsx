@@ -4,6 +4,10 @@ import { Title, Subtitle, Content } from "screens/Partials/Text/Text.jsx";
 import Icon from "screens/Partials/Icon/Icon.jsx";
 import { TextButton, SquareButton } from "screens/Partials/Button/Button.jsx";
 
+const backend = {
+    url: "http://localhost:8000/api/v1/evento",
+}
+
 import "./EventList.scss"
 export default class EventList extends Component {
 	constructor(props) {
@@ -64,7 +68,7 @@ class EventListItem extends Component {
             url: `${backend.url}/${this.props.item.id}`,
             method: "PUT",
             data: {
-                favorito: !this.props.item.favorito
+                favorito: !Number(this.props.item.favorito) ? 1 : 0
             },
 
             success: (response) => {
@@ -115,7 +119,7 @@ class EventListItem extends Component {
 				</div>
                 {
                     this.props.canMark ?
-                        <div onClick={this.toggleFavorito} className={`mark-star ${item.favorito ? 'active' : ''}`}>
+                        <div onClick={this.toggleFavorito} className={`mark-star ${Number(item.favorito) ? 'active' : ''}`}>
                             <Icon size={30} icon="star" />
                         </div> : null
                 }
