@@ -4,7 +4,7 @@ import EventModal from "screens/Partials/EventModal/EventModal.jsx";
 import Icon from "screens/Partials/Icon/Icon.jsx";
 
 const backend = {
-    url: "http://localhost:8000/my-events",
+    url: "http://localhost:8000/api/v1/evento",
 }
 
 export default class MyEvents extends Component {
@@ -30,83 +30,12 @@ export default class MyEvents extends Component {
     }
 
     requestItens = () => {
-        let fakeList = [
-            {
-                id: 1,
-                title: "Front In Piaui",
-                description: "O sit voluptatem accusantium doloremque laudantium, totam remaperiam, eaque ipsa evento que consagra designers e desenvolvedores da web. Sed ut perspiciatis unde omnis iste natus error sit sit voluptatem accusantium doloremque laudantium, totam remaperiam, eaque ipsa voluptatem accusantium doloremque laudantium, totam remaperiam, eaque ipsa quae ab illo inventore veritatis etaudantium voluptatem lorem ipsum",
-                location: "R. Cel. Genúino, 130 - Centro Histórico, Porto Alegre - RS",
-                date: "17/09/2017 9hr 30min às 19hr 30min",
-                price: "A partir de R$ 250,00",
-                flagged: false,
-                logo: "source/imgs/logo-frontinpoa.png",
-                mainColor: "#206548"
-            },
-            {
-                id: 2,
-                title: "BrazilJS",
-                description: "A maior conferência de JavaScript do mundo!",
-                location: "Av. Diário de Notícias, 300 - Cristal, Porto Alegre - RS",
-                date: "17/09/2017 9hr 30min às 19hr 30min",
-                price: "Gratuito",
-                flagged: true,
-                logo: "source/imgs/logo-braziljs.png",
-                mainColor: "#ffde17"
-            },
-            {
-                id: 3,
-                title: "AWS Experience",
-                description: "O principal objetivo principal objetivo principal objetivo do AWS Experience é possibilitar.",
-                location: "Av. Diário de Notícias, 300 - Cristal, Porto Alegre - RS",
-                date: "17/09/2017 9hr 30min às 19hr 30min",
-                price: "R$ 100,00",
-                flagged: false,
-                logo: "source/imgs/logo-aws.png",
-                mainColor: "#a362a5"
-            },
-            {
-                id: 4,
-                title: "Meet UP Start-up",
-                description: "O sit voluptatem accusantium doloremque laudantium, totam remaperiam, eaque ipsa evento que consagra designers e desenvolvedores da web. Sed ut perspiciatis unde omnis iste natus error sit sit voluptatem accusantium doloremque laudantium, totam remaperiam, eaque ipsa voluptatem accusantium doloremque laudantium, totam remaperiam, eaque ipsa quae ab illo inventore veritatis etaudantium voluptatem lorem ipsum",
-                location: "R. Cel. Genúino, 130 - Centro Histórico, Porto Alegre - RS",
-                date: "17/09/2017 9hr 30min às 19hr 30min",
-                price: "A partir de R$ 250,00",
-                flagged: false,
-                logo: "",
-                mainColor: "#e63c82"
-            },
-            {
-                id: 5,
-                title: "FISL 2018",
-                description: "A maior conferência de JavaScript do mundo!",
-                location: "Av. Diário de Notícias, 300 - Cristal, Porto Alegre - RS",
-                date: "17/09/2017 9hr 30min às 19hr 30min",
-                price: "Gratuito",
-                flagged: true,
-                logo: "",
-                mainColor: "#789815"
-            },
-            {
-                id: 6,
-                title: "AWS Summit Experience",
-                description: "O principal objetivo principal objetivo principal objetivo do AWS Experience é possibilitar.",
-                location: "Av. Diário de Notícias, 300 - Cristal, Porto Alegre - RS",
-                date: "17/09/2017 9hr 30min às 19hr 30min",
-                price: "R$ 100,00",
-                flagged: false,
-                logo: "source/imgs/logo-aws.png",
-                mainColor: "#f79025"
+        $.ajax({
+            url: backend.url,
+            success: (data) => {
+                this.setItems(data);
             }
-        ]
-        this.setItems(fakeList);
-        return;
-
-        /*fetch(`${backend.url}`, {
-            mode: "cors",
-            success: (items) => {
-                this.setItems(items);
-            }
-        });*/
+        })
     }
 
     openModal = () => {
@@ -119,7 +48,7 @@ export default class MyEvents extends Component {
         this.setState({
             openModal: false,
             activeItem: null
-        });
+        }, this.requestItens);
     }
 
     setActiveItem = (item) => {
@@ -127,25 +56,6 @@ export default class MyEvents extends Component {
             activeItem: item,
             openModal: true
         });
-    }
-
-    saveEvent = (event) => {
-        let items = this.state.items;
-
-        let newID = items[items.length - 1].id;
-        event.id = newID;
-
-        let colors = ["#206548", "#a362a5", "#c5385f", "#789815"];
-
-        event.flagged = true;
-        event.logo = "";
-        event.mainColor = colors[Math.floor(Math.random()*colors.length)];
-    
-        items.push(event);
-
-        this.setState({
-            items: items
-        }, this.closeModal);
     }
 
     render() {

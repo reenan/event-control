@@ -7,7 +7,7 @@ import { InputText } from "screens/Partials/Input/Input.jsx";
 import { TextButton, SquareButton } from "screens/Partials/Button/Button.jsx";
 
 const backend = {
-    url: "http://localhost:8000/api/v1",
+    url: "http://localhost:8000/api/v1/evento",
 }
 
 import "./EventModal.scss";
@@ -17,11 +17,11 @@ export default class EventModal extends Component {
 
 		this.state = {
 			eventInfo: {
-				title: '',
-				description: '',
-				location: '',
-				date: '',
-				price: ''
+				nome: '',
+				descricao: '',
+				endereco: '',
+				data_fim: '',
+				valor: ''
 			}
 		}
 
@@ -38,21 +38,23 @@ export default class EventModal extends Component {
 		if(activeItem != null) {
 			this.setState({
 				eventInfo: {
-					title: activeItem.title,
-					description: activeItem.description,
-					location: activeItem.location,
-					date: activeItem.date,
-					price: activeItem.price
+					id: activeItem.id,
+					nome: activeItem.nome,
+					descricao: activeItem.descricao,
+					endereco: activeItem.endereco,
+					data_fim: activeItem.data_fim,
+					valor: activeItem.valor
 				}
 			});
 		} else {
 			this.setState({
 				eventInfo: {
-					title: "",
-					description: "",
-					location: "",
-					date: "",
-					price: ""
+					id: null,
+					nome: "",
+					descricao: "",
+					endereco: "",
+					data_fim: "",
+					valor: ""
 				}
 			});
 		}
@@ -66,35 +68,45 @@ export default class EventModal extends Component {
 	}
 
 	createEvent = () => {
-		if(this.state.activeItem != null) {
+		let { eventInfo } = this.state;
+
+		if(eventInfo.id != null) {
+
+            $.ajax({
+                url: `${backend.url}/${eventInfo.id}`,
+                method: "PUT",
+                data: {
+                    nome: eventInfo.nome,
+                    descricao: eventInfo.descricao,
+                    endereco: eventInfo.endereco,
+                    data_fim: eventInfo.data_fim,
+                    valor: eventInfo.valor
+                },
+
+                success: (response) => {
+                    this.props.closeModal();
+                }
+            })
+
 			this.props.closeModal();
 			return;
 		}
 
-		let eventInfo = this.state.eventInfo;
+		$.ajax({
+			url: backend.url,
+			method: "POST",
+			data: {
+				nome: eventInfo.nome,
+				descricao: eventInfo.descricao,
+				endereco: eventInfo.endereco,
+				data_fim: eventInfo.data_fim,
+				valor: eventInfo.valor
+			},
 
-		this.props.saveEvent({
-			title: eventInfo.title,
-			description: eventInfo.description,
-			location: eventInfo.location,
-			date: eventInfo.date,
-			price: eventInfo.price
-		});
-
-		// let body = new Formdate(),
-		// 	info = this.state.eventInfo;
-
-        // for(let property in info) {
-        //     body.append(property, info[property])
-        // }
-
-        // let response = fetch(`${backend.url}/evento`, {
-        //     method: "POST",
-        //     mode: "no-cors",
-        //     body: body
-		// });
-
-		// this.props.closeModal();
+			success: (response) => {
+				this.props.closeModal();
+			}
+		})
 	}
 
 	render() {
@@ -110,11 +122,11 @@ export default class EventModal extends Component {
 				</ModalHeader>
 
 				<ModalContent>
-					<InputText id="title" value={this.state.eventInfo.title} label="Nome" onChange={this.changeInput} context={this}/>
-					<InputText id="description" value={this.state.eventInfo.description} label="Descrição" onChange={this.changeInput} context={this}/>
-					<InputText id="location" value={this.state.eventInfo.location} label="Endereço" onChange={this.changeInput} context={this}/>
-					<InputText id="date" value={this.state.eventInfo.date} label="date" onChange={this.changeInput} context={this} type="date"/>
-					<InputText id="price" value={this.state.eventInfo.price} label="Valor mínimo" onChange={this.changeInput} context={this}/>
+					<InputText required id="nome" value={this.state.eventInfo.nome} label="Nome" onChange={this.changeInput} context={this}/>
+					<InputText id="descricao" value={this.state.eventInfo.descricao} label="Descrição" onChange={this.changeInput} context={this}/>
+					<InputText required id="endereco" value={this.state.eventInfo.endereco} label="Endereço" onChange={this.changeInput} context={this}/>
+					<InputText required id="data_fim" value={this.state.eventInfo.data_fim} label="Data" onChange={this.changeInput} context={this} type="data_fim"/>
+					<InputText required id="valor" value={this.state.eventInfo.valor} label="Valor" onChange={this.changeInput} context={this}/>
 				</ModalContent>
 
 				<ModalFooter>
