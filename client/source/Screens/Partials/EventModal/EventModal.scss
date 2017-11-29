@@ -20,7 +20,7 @@
 
 .event-modal {
 	z-index: 10;
-	
+
 	.modal-content-area {
 		width: 90vw;
 		height: 90vh;
@@ -29,4 +29,5 @@
 
 .close {
 	visibility: hidden;
+	pointer-events: none;
 }

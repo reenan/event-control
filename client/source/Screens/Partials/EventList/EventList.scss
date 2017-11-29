@@ -3,7 +3,7 @@
 
 .event-list {
 	padding: 0;
-	margin-top: 45px;
+	margin: 45px 0;
 
 	.event-list-item {
 		@include box-shadow(0px 3px 5px 0px, rgba(0, 0, 0, 0.15));
@@ -14,8 +14,6 @@
 		border-radius: 2px;
 		padding: 15px;
 
-		background-repeat: no-repeat;
-		background-position: left;
 
 		& + .event-list-item {
 			margin-top: 15px;
@@ -24,6 +22,8 @@
 		.color-layer, .white-layer {
 			@include absolute-fill();
 			z-index: 1;
+			background-repeat: no-repeat;
+			background-position: top left;
 		}
 
 		.color-layer {

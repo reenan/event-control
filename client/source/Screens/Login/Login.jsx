@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 
 import { Title, Subtitle } from "screens/Partials/Text/Text.jsx";
 import { TextButton, SquareButton } from "screens/Partials/Button/Button.jsx";
-import FacebookLogin from "./Partials/FacebookLogin.jsx"
+//import FacebookLogin from "./Partials/FacebookLogin.jsx"
 
 import "./Login.scss"
 export default class Login extends Component {
 	constructor(props) {
 		super(props);
+	}
+
+	login = () => {
+		this.props.history.push({pathname: `/meus-eventos`, state: { title: "Meus eventos" }});
 	}
 
 	render() {
@@ -22,9 +26,9 @@ export default class Login extends Component {
 					<p>connect with</p>
 
 					<ul>
-						<FacebookLogin />
-						<li className="twitter" />
-						<li className="gplus" />
+						<li onClick={this.login} className="facebook" />
+						<li onClick={this.login} className="twitter" />
+						<li onClick={this.login} className="gplus" />
 					</ul>
 				</div>
 

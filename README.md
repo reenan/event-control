@@ -15,8 +15,6 @@ A documentação do projeto estará disponível em: [event-control.io](https://r
 
 
 
-
-
 Os alunos envolvidos são: [**Renan Souza**](https://github.com/reenan), [**Rafael Wachter**](https://github.com/wachter), [**Júlio Renner**](https://github.com/asuha), [**Tcharles Silva**](https://github.com/tcharlezin) e [**Marco Nunes**](https://github.com/marconm85).
 
 O professor é: [**Raphael Leite**](https://github.com/raphaellc)

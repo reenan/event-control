@@ -18,14 +18,13 @@ export default class Menu extends Component {
 
 	openMenu = () => {
 		this.setState({
-			openMenu: true 
+			openMenu: true
 		});
 	}
 
 	closeMenu = () => {
-		console.log("closeMenu");
 		this.setState({
-			openMenu: false 
+			openMenu: false
 		});
 	}
 
@@ -33,13 +32,13 @@ export default class Menu extends Component {
 
 		const { history } = this.props;
 		const { location } = history;
-		let title = location.state && location.state.title ? location.state.title : "Renderizando página sem título"; 
+		let title = location.state && location.state.title ? location.state.title : "Renderizando página sem título";
 
 		return (
-			
+
 			<div className="menu">
 				<MenuHeader text={title} iconAction={this.openMenu} />
-				<SideMenu open={this.state.openMenu} closeMenu={this.closeMenu} />
+				<SideMenu history={history} open={this.state.openMenu} closeMenu={this.closeMenu} />
 			</div>
 		);
 	}
@@ -83,32 +82,37 @@ class SideMenu extends Component {
 		open: false
 	};
 
+	logout = () => {
+		this.props.closeMenu();
+		this.props.history.push("/login");
+	}
+
 	render() {
 
 		let menuList = [
 			{
-				pathname: "my-events",
+				pathname: "meus-eventos",
 				info: {
 					title: "Meus eventos",
 					icon: "pencil"
 				}
 			},
 			{
-				pathname: "highlight-events",
+				pathname: "eventos-destacados",
 				info: {
 					title: "Destacados",
 					icon: "star"
 				}
 			},
 			{
-				pathname: "future-events",
+				pathname: "proximos-eventos",
 				info: {
 					title: "Próximos eventos",
 					icon: "bookmark"
 				}
 			},
 			{
-				pathname: "historic",
+				pathname: "historico-eventos",
 				info : {
 					title: "Histórico",
 					icon: "clock-o"
@@ -116,23 +120,22 @@ class SideMenu extends Component {
 			}
 		]
 
-		const { open, closeMenu } = this.props;
+		const { open, closeMenu, history } = this.props;
 
 		return (
 			<div className={`side-menu ${open ? 'open' : ''}`}>
 				<div className="overlay" onClick={closeMenu} />
 				<div className="menu-wrapper">
 					<MenuHeader icon="chevron-left" text="Menu" iconAction={closeMenu} />
-				
 					<div className="avatar" style={{backgroundImage: `url(${"source/imgs/avatar.jpg"})`}} />
 					<ul>
 						{
 							menuList.map((menuItem, index) => {
-								return <MenuItem key={index.toString()} pathname={menuItem.pathname} item={menuItem.info} />
+								return <MenuItem closeMenu={closeMenu} history={history} key={index.toString()} pathname={menuItem.pathname} item={menuItem.info} />
 							})
 						}
 					</ul>
-					<div className="sign-out-wrapper">
+					<div onClick={this.logout} className="sign-out-wrapper">
 						<Icon icon="sign-out" />
 						<Content>Sair</Content>
 					</div>
@@ -144,17 +147,20 @@ class SideMenu extends Component {
 
 
 class MenuItem extends Component {
-    
     constructor(props) {
         super(props);
     }
 
+    closeMenu = () => {
+    	this.props.closeMenu();
+    }
+
     render() {
-    	const { item, pathname } = this.props;
+    	const { item, pathname, closeMenu, history } = this.props;
 
         return (
             <li>
-                <NavLink to={{pathname: `/${pathname}`, state: { title: item.title }}} className="content">
+                <NavLink to={{pathname: `/${pathname}`, state: { title: item.title }}} onClick={this.closeMenu} className="content">
                 	<Icon size={16} icon={item.icon}/>
                     <Content className="small bold">{item.title}</Content>
                 </NavLink>

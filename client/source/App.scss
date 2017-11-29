@@ -10,4 +10,28 @@ body {
 	a {
 		text-decoration: none;
 	}
+
+	.new-event-button {
+		@include transition(background-color 400ms ease-out);
+		position: fixed;
+		bottom: 45px;
+		right: 45px;
+		background-color: $green-5;
+		width: 65px;
+		height: 65px;
+		border-radius: 100%;
+		display: table;
+		text-align: center;
+		z-index: 5;
+
+		> div {
+			display: table-cell;
+			vertical-align: middle;
+		}
+
+		&:hover {
+			background-color: darken($green-5, 15%);
+			cursor: pointer;
+		}
+	}
 }

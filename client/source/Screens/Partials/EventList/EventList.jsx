@@ -11,18 +11,20 @@ export default class EventList extends Component {
 	}
 
 	static defaultProps = {
-		list: []
+		list: [],
+		setActiveItem: () => {},
+		edit: false
 	}
 
 	render() {
-		const { list } = this.props;
+		const { list, setActiveItem, edit } = this.props;
 
 		return (
 			<div className="event-list">
 				<ul>
 					{
 						list.map((item, index) => {
-							return <EventListItem key={index} item={item} /> 
+							return <EventListItem setActiveItem={setActiveItem} edit={edit} key={index} item={item} />
 						})
 					}
 
@@ -47,14 +49,22 @@ class EventListItem extends Component {
 		}
 	}
 
+	handleClick = () => {
+		if(!this.props.edit) {
+			return;
+		}
+
+		this.props.setActiveItem(this.props.item);
+	}
+
 	render() {
 		const { item } = this.props;
 
 		let descriptionSize = this.getDescriptionSize(item.description);
 
 		return (
-			<li className="event-list-item" style={{backgroundImage: `url(${item.logo})`}}>
-				<div className="color-layer" style={{backgroundColor: item.mainColor}} />
+			<li onClick={this.handleClick} className="event-list-item">
+				<div className="color-layer" style={{backgroundColor: item.mainColor, backgroundImage: `url(${item.logo})`}} />
 				<div className="white-layer" />
 				<div className="data">
 					<Title tag="h6">

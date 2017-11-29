@@ -8,7 +8,7 @@ import { TextButton, SquareButton } from "screens/Partials/Button/Button.jsx";
 
 const backend = {
     url: "http://localhost:8000/api/v1",
-} 
+}
 
 import "./EventModal.scss";
 export default class EventModal extends Component {
@@ -16,30 +16,42 @@ export default class EventModal extends Component {
 		super(props);
 
 		this.state = {
-			openModal: false,
 			eventInfo: {
-				nome: '',
-				descricao: '',
-				endereco: '',
-				data: '',
-				horario: '',
-				valorMinimo: ''
+				title: '',
+				description: '',
+				location: '',
+				date: '',
+				price: ''
 			}
 		}
 
 		this.changeInput.bind(this);
 	}
 
-	openModal = () => {
-		this.setState({
-			openModal: true 
-		});
-	}
+	componentWillReceiveProps(nextProps) {
+		const { activeItem } = nextProps;
 
-	closeModal = () => {
-		this.setState({
-			openModal: false 
-		});
+		if(activeItem != null) {
+			this.setState({
+				eventInfo: {
+					title: activeItem.title,
+					description: activeItem.description,
+					location: activeItem.location,
+					date: activeItem.date,
+					price: activeItem.price
+				}
+			});
+		} else {
+			this.setState({
+				eventInfo: {
+					title: "",
+					description: "",
+					location: "",
+					date: "",
+					price: ""
+				}
+			});
+		}
 	}
 
 	changeInput = function(info) {
@@ -50,51 +62,47 @@ export default class EventModal extends Component {
 	}
 
 	createEvent = () => {
-		let body = new FormData(),
+		let body = new Formdate(),
 			info = this.state.eventInfo;
-        
+
         for(let property in info) {
             body.append(property, info[property])
         }
-        
+
         let response = fetch(`${backend.url}/evento`, {
-            method: "POST",        
+            method: "POST",
             mode: "no-cors",
             body: body
 		});
-		
-		this.closeModal();
+
+		this.props.closeModal();
 	}
 
 	render() {
 		return (
-			<div className="createEventButton">
-				<p className="p" onClick={this.openModal}>+</p>
-				<Modal className={this.state.openModal ? 'event-modal': 'close'} onClose={this.closeModal} open={true || this.state.openModal}>
-					<ModalHeader>
-						<Title tag="h2">
-							Criação de Evento
-						</Title>
-						<Subtitle tag="h3">
-							Cadastre aqui seu evento
-						</Subtitle>
-					</ModalHeader>
+			<Modal className={this.props.openModal ? 'event-modal': 'close'} onClose={this.props.closeModal} open={this.props.openModal}>
+				<ModalHeader>
+					<Title tag="h2">
+						Criação de Evento
+					</Title>
+					<Subtitle tag="h3">
+						Cadastre aqui seu evento
+					</Subtitle>
+				</ModalHeader>
 
-					<ModalContent>
-						<InputText id="nome" value={this.state.eventInfo.nome} label="Nome" onChange={this.changeInput} context={this}/>
-						<InputText id="descricao" value={this.state.eventInfo.descricao} label="Descrição" onChange={this.changeInput} context={this}/>
-						<InputText id="endereco" value={this.state.eventInfo.endereco} label="Endereço" onChange={this.changeInput} context={this}/>
-						<InputText id="data" value={this.state.eventInfo.data} label="Data" onChange={this.changeInput} context={this} type="date"/>
-						<InputText id="horario" value={this.state.eventInfo.horario} label="Horário" onChange={this.changeInput} context={this} type="time"/>
-						<InputText id="valorMinimo" value={this.state.eventInfo.valorMinimo} label="Valor mínimo" onChange={this.changeInput} context={this}/>
-					</ModalContent>
+				<ModalContent>
+					<InputText id="title" value={this.state.eventInfo.title} label="Nome" onChange={this.changeInput} context={this}/>
+					<InputText id="description" value={this.state.eventInfo.description} label="Descrição" onChange={this.changeInput} context={this}/>
+					<InputText id="location" value={this.state.eventInfo.location} label="Endereço" onChange={this.changeInput} context={this}/>
+					<InputText id="date" value={this.state.eventInfo.date} label="date" onChange={this.changeInput} context={this} type="date"/>
+					<InputText id="price" value={this.state.eventInfo.price} label="Valor mínimo" onChange={this.changeInput} context={this}/>
+				</ModalContent>
 
-					<ModalFooter>
-						<TextButton onClick={this.closeModal} text="Cancelar" color="red" />
-						<SquareButton onClick={this.createEvent} text="Salvar" />
-					</ModalFooter>
-				</Modal>
-			</div>
+				<ModalFooter>
+					<TextButton onClick={this.props.closeModal} text="Cancelar" color="red" />
+					<SquareButton onClick={this.createEvent} text="Salvar" />
+				</ModalFooter>
+			</Modal>
 		);
 	}
 }
