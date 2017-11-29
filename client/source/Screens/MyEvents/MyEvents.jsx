@@ -40,7 +40,7 @@ export default class MyEvents extends Component {
                 price: "A partir de R$ 250,00",
                 flagged: false,
                 logo: "source/imgs/logo-frontinpoa.png",
-                mainColor: "#e63c82"
+                mainColor: "#206548"
             },
             {
                 id: 2,
@@ -62,33 +62,33 @@ export default class MyEvents extends Component {
                 price: "R$ 100,00",
                 flagged: false,
                 logo: "source/imgs/logo-aws.png",
-                mainColor: "#f79025"
+                mainColor: "#a362a5"
             },
             {
                 id: 4,
-                title: "Front In Piaui",
+                title: "Meet UP Start-up",
                 description: "O sit voluptatem accusantium doloremque laudantium, totam remaperiam, eaque ipsa evento que consagra designers e desenvolvedores da web. Sed ut perspiciatis unde omnis iste natus error sit sit voluptatem accusantium doloremque laudantium, totam remaperiam, eaque ipsa voluptatem accusantium doloremque laudantium, totam remaperiam, eaque ipsa quae ab illo inventore veritatis etaudantium voluptatem lorem ipsum",
                 location: "R. Cel. Genúino, 130 - Centro Histórico, Porto Alegre - RS",
                 date: "17/09/2017 9hr 30min às 19hr 30min",
                 price: "A partir de R$ 250,00",
                 flagged: false,
-                logo: "source/imgs/logo-frontinpoa.png",
+                logo: "",
                 mainColor: "#e63c82"
             },
             {
                 id: 5,
-                title: "BrazilJS",
+                title: "FISL 2018",
                 description: "A maior conferência de JavaScript do mundo!",
                 location: "Av. Diário de Notícias, 300 - Cristal, Porto Alegre - RS",
                 date: "17/09/2017 9hr 30min às 19hr 30min",
                 price: "Gratuito",
                 flagged: true,
-                logo: "source/imgs/logo-braziljs.png",
-                mainColor: "#ffde17"
+                logo: "",
+                mainColor: "#789815"
             },
             {
                 id: 6,
-                title: "AWS Experience",
+                title: "AWS Summit Experience",
                 description: "O principal objetivo principal objetivo principal objetivo do AWS Experience é possibilitar.",
                 location: "Av. Diário de Notícias, 300 - Cristal, Porto Alegre - RS",
                 date: "17/09/2017 9hr 30min às 19hr 30min",
@@ -129,6 +129,25 @@ export default class MyEvents extends Component {
         });
     }
 
+    saveEvent = (event) => {
+        let items = this.state.items;
+
+        let newID = items[items.length - 1].id;
+        event.id = newID;
+
+        let colors = ["#206548", "#a362a5", "#c5385f", "#789815"];
+
+        event.flagged = true;
+        event.logo = "";
+        event.mainColor = colors[Math.floor(Math.random()*colors.length)];
+    
+        items.push(event);
+
+        this.setState({
+            items: items
+        }, this.closeModal);
+    }
+
     render() {
         return (
             <div>
@@ -137,7 +156,7 @@ export default class MyEvents extends Component {
                         <Icon size={22} icon={"plus"}/>
                     </div>
                 </div>
-                <EventModal activeItem={this.state.activeItem} openModal={this.state.openModal} closeModal={this.closeModal} />
+                <EventModal saveEvent={this.saveEvent} activeItem={this.state.activeItem} openModal={this.state.openModal} closeModal={this.closeModal} />
                 <EventList edit setActiveItem={this.setActiveItem} list={this.state.items} />
             </div>
         )

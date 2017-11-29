@@ -28,6 +28,10 @@ export default class EventModal extends Component {
 		this.changeInput.bind(this);
 	}
 
+	static defaultProps = {
+		saveEvent: () => {}
+	}
+
 	componentWillReceiveProps(nextProps) {
 		const { activeItem } = nextProps;
 
@@ -62,20 +66,35 @@ export default class EventModal extends Component {
 	}
 
 	createEvent = () => {
-		let body = new Formdate(),
-			info = this.state.eventInfo;
+		if(this.state.activeItem != null) {
+			this.props.closeModal();
+			return;
+		}
 
-        for(let property in info) {
-            body.append(property, info[property])
-        }
+		let eventInfo = this.state.eventInfo;
 
-        let response = fetch(`${backend.url}/evento`, {
-            method: "POST",
-            mode: "no-cors",
-            body: body
+		this.props.saveEvent({
+			title: eventInfo.title,
+			description: eventInfo.description,
+			location: eventInfo.location,
+			date: eventInfo.date,
+			price: eventInfo.price
 		});
 
-		this.props.closeModal();
+		// let body = new Formdate(),
+		// 	info = this.state.eventInfo;
+
+        // for(let property in info) {
+        //     body.append(property, info[property])
+        // }
+
+        // let response = fetch(`${backend.url}/evento`, {
+        //     method: "POST",
+        //     mode: "no-cors",
+        //     body: body
+		// });
+
+		// this.props.closeModal();
 	}
 
 	render() {
