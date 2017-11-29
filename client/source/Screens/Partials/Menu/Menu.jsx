@@ -108,13 +108,6 @@ class SideMenu extends Component {
 				}
 			},
 			{
-				pathname: "map-events",
-				info: {
-					title: "Mapa de eventos",
-					icon: "map-marker"
-				}
-			},
-			{
 				pathname: "historic",
 				info : {
 					title: "Histórico",

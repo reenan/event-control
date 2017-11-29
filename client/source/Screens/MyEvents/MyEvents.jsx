@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import EventList from 'screens/Partials/EventList/EventList.jsx';
+import EventModal from "screens/Partials/EventModal/EventModal.jsx";
 
 const backend = {
     url: "http://localhost:8000/my-events",
@@ -11,12 +12,12 @@ export default class MyEvents extends Component {
         super(props);
 
         this.state = {
-            items: null
+            items: []
         }
     }
 
     componentWillMount() {
-        this.requestFutureItems();
+        this.requestMyEvents();
     }
 
     setItems = (items) => {
@@ -25,11 +26,11 @@ export default class MyEvents extends Component {
         });
     }
 
-    requestFutureItems = () => {
+    requestMyEvents = () => {
         let fakeList = [
             {
                 id: 1,
-                title: "Front In Poa",
+                title: "Front In Piaui",
                 description: "O sit voluptatem accusantium doloremque laudantium, totam remaperiam, eaque ipsa evento que consagra designers e desenvolvedores da web. Sed ut perspiciatis unde omnis iste natus error sit sit voluptatem accusantium doloremque laudantium, totam remaperiam, eaque ipsa voluptatem accusantium doloremque laudantium, totam remaperiam, eaque ipsa quae ab illo inventore veritatis etaudantium voluptatem lorem ipsum",
                 location: "R. Cel. Genúino, 130 - Centro Histórico, Porto Alegre - RS",
                 date: "17/09/2017 9hr 30min às 19hr 30min",
@@ -74,7 +75,10 @@ export default class MyEvents extends Component {
 
     render() {
         return (
-            <EventList list={this.state.items} />
+            <div>
+                <EventModal />
+                <EventList list={this.state.items} />
+            </div>
         )
     }
 
