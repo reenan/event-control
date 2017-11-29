@@ -51,7 +51,7 @@ export default class FutureEvents extends Component {
             },
             {
                 id: 3,
-                title: "AWS Experience",
+                title: "Microsoft Experience",
                 description: "O principal objetivo principal objetivo principal objetivo do AWS Experience é possibilitar.",
                 location: "Av. Diário de Notícias, 300 - Cristal, Porto Alegre - RS",
                 date: "17/09/2017 9hr 30min às 19hr 30min",
@@ -62,7 +62,7 @@ export default class FutureEvents extends Component {
             },
             {
                 id: 4,
-                title: "Front In Piaui",
+                title: "Front In Manaus",
                 description: "O sit voluptatem accusantium doloremque laudantium, totam remaperiam, eaque ipsa evento que consagra designers e desenvolvedores da web. Sed ut perspiciatis unde omnis iste natus error sit sit voluptatem accusantium doloremque laudantium, totam remaperiam, eaque ipsa voluptatem accusantium doloremque laudantium, totam remaperiam, eaque ipsa quae ab illo inventore veritatis etaudantium voluptatem lorem ipsum",
                 location: "R. Cel. Genúino, 130 - Centro Histórico, Porto Alegre - RS",
                 date: "17/09/2017 9hr 30min às 19hr 30min",
@@ -73,7 +73,7 @@ export default class FutureEvents extends Component {
             },
             {
                 id: 5,
-                title: "BrazilJS",
+                title: "Amazon summit",
                 description: "A maior conferência de JavaScript do mundo!",
                 location: "Av. Diário de Notícias, 300 - Cristal, Porto Alegre - RS",
                 date: "17/09/2017 9hr 30min às 19hr 30min",

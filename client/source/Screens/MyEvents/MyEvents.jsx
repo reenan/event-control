@@ -39,7 +39,7 @@ export default class MyEvents extends Component {
                 date: "17/09/2017 9hr 30min às 19hr 30min",
                 price: "A partir de R$ 250,00",
                 flagged: false,
-                logo: "source/imgs/logo-frontinpoa.png",
+                logo: "",
                 mainColor: "#206548"
             },
             {
