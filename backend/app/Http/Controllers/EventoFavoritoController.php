@@ -58,7 +58,7 @@ class EventoFavoritoController extends Controller
         try {
             $eventoFavorito = EventoFavorito::find($id);
             $eventoFavorito->delete();
-            return true;
+            return "OK";
         } catch (\Exception $ex) {
             return response()->json(['error' => $ex->getMessage()], 500);
         }

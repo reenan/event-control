@@ -22,6 +22,8 @@ $router->group(['prefix' => 'api/v1'], function ($app) {
         $rota->post('', 'EventoController@store');
         $rota->put('{id}', 'EventoController@update');
         $rota->delete('{id}', 'EventoController@delete');
+
+        $rota->get('user/{id}', 'EventoController@listarEventos');
     });
 
     $app->group(['prefix' => 'endereco'], function ($rota) {

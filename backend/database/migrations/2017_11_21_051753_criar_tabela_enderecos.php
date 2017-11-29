@@ -15,6 +15,8 @@ class CriarTabelaEnderecos extends Migration
     {
         Schema::create('enderecos', function(Blueprint $table)
         {
+            $table->engine = 'InnoDB';
+            
             $table->increments('id');
             $table->string('descricao')->nullable();
             $table->string('logradouro');
@@ -35,6 +37,6 @@ class CriarTabelaEnderecos extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('enderecos');
     }
 }
