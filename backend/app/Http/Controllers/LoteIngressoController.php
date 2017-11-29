@@ -58,7 +58,7 @@ class LoteIngressoController extends Controller
         try {
             $loteIngresso = LoteIngresso::find($id);
             $loteIngresso->delete();
-            return true;
+            return "OK";
         } catch (\Exception $ex) {
             return response()->json(['error' => $ex->getMessage()], 500);
         }

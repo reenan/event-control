@@ -13,13 +13,13 @@ class CriarTabelaLoteIngressos extends Migration
      */
     public function up()
     {
-        Schema::create('lote_ingressos', function (Blueprint $table) {
+        Schema::create('lote_ingressos', function (Blueprint $table)
+        {
+            $table->engine = 'InnoDB';
+
             $table->increments('id');
             $table->string('descricao');
-
             $table->integer('evento_id')->unsigned();
-            $table->foreign('evento_id')->references('id')->on("eventos");
-
             $table->double('valor');
             $table->boolean('ingresso_estudante');
             $table->integer('quantidade_maxima');
@@ -34,6 +34,6 @@ class CriarTabelaLoteIngressos extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('lote_ingressos');
     }
 }

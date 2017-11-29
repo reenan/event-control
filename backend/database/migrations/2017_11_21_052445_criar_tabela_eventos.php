@@ -13,13 +13,13 @@ class CriarTabelaEventos extends Migration
      */
     public function up()
     {
-        Schema::create('eventos', function (Blueprint $table) {
+        Schema::create('eventos', function (Blueprint $table)
+        {
+            $table->engine = 'InnoDB';
+
             $table->increments('id');
             $table->string('descricao');
-
             $table->integer('endereco_id')->unsigned();
-            $table->foreign('endereco_id')->references('id')->on("enderecos");
-
             $table->date('data_inicio');
             $table->date('data_fim');
             $table->string('hora_inicio');
@@ -35,6 +35,6 @@ class CriarTabelaEventos extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('eventos');
     }
 }

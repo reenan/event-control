@@ -13,14 +13,15 @@ class CriarTabelaOrganizacaoEvento extends Migration
      */
     public function up()
     {
-        Schema::create('organizacao_eventos', function (Blueprint $table) {
+        Schema::create('organizacao_eventos', function (Blueprint $table)
+        {
+            $table->engine = 'InnoDB';
+
             $table->increments('id');
 
             $table->integer('user_id')->unsigned();
-            // $table->foreign('user_id')->references('id')->on("users");
 
             $table->integer('evento_id')->unsigned();
-            // $table->foreign('evento_id')->references('id')->on("eventos");
 
             $table->boolean("usuario_admin")->default(false);
 
@@ -35,6 +36,6 @@ class CriarTabelaOrganizacaoEvento extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('organizacao_eventos');
     }
 }
