@@ -39,7 +39,10 @@
 
 		.modal-content-area {
 			@include box-shadow(0px 3px 5px 0px, rgba(0, 0, 0, 0.15));
+			@include box-sizing(border-box);
+			text-align: left;
 			position: relative;
+			overflow-x: hidden;
 			z-index: 2;
 			display: inline-block;
 			background-color: white;
@@ -51,7 +54,7 @@
 		.modal-header {
 			text-align: left;
 			padding-bottom: 30px;
-			border-bottom: 1px solid $dark-blue-6;
+			border-bottom: 1px solid transparentize($dark-blue-6, 0.6);
 		}
 
 		.modal-content {
@@ -59,20 +62,20 @@
 		}
 
 		.modal-footer {
-			margin-bottom: -45px;
-			margin-top: 45px;
-			height: 60px;
-			margin-left: -45px;
-			margin-right: -45px;
-			background-color: $soft-gray;
+			height: 80px;
+			position: absolute;
+			width: 100%;
+			left: -45px;
+			bottom: 0;
 			text-align: right;
+			display: table;
 
 			> div {
-				line-height: 60px;
-				padding-right: 45px;
+				display: table-cell;
+				vertical-align: middle;
 
 				.button-wrapper + .button-wrapper {
-					margin-left: 10px;
+					margin-left: 15px;
 				}
 			}
 		}

@@ -41,11 +41,11 @@
 	}
 
 	&.square {
-		background-color: #8bbdde;
+		background-color: $green-5;
 		border-radius: 3px;
 
 		&:hover {
-			background-color: #7daac7;
+			background-color: darken($green-5, 15%);
 		}
 
 	}
@@ -82,28 +82,6 @@
 		}
 	}
 
-	&.green-button {
-		background-color: #b1ca77;
-
-		&.big {
-			border-radius: 20px;
-		}
-
-		&.medium {
-			border-radius: 18px;
-		}
-
-		&.small {
-			border-radius: 15px;
-		}
-
-		&:hover {
-			background-color: #9fb56b;
-		}
-
-	}
-
-
 	&.ghost {
 		border: 3px solid;
 		border-color: #dde0e4;
@@ -131,9 +109,7 @@
 			border-color: #c3c8ce;
 			background-color: #c3c8ce;
 		}
-
 	}
-
 
 	&.text-button {
 		@include transition(color 0.4s);
