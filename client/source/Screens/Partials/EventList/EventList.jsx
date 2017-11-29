@@ -10,6 +10,10 @@ export default class EventList extends Component {
 		super(props);
 	}
 
+	static defaultProps = {
+		list: []
+	}
+
 	render() {
 		const { list } = this.props;
 
@@ -47,18 +51,6 @@ class EventListItem extends Component {
 		const { item } = this.props;
 
 		let descriptionSize = this.getDescriptionSize(item.description);
-
-		/*
-			id: 1,
-			title: "Front In Poa",
-			description: "O",
-			location: "R. Cel. Genúino, 130 - Centro Histórico, Porto Alegre - RS",
-			date: "17/09/2017 9hr 30min às 19hr 30min",
-			price: "A partir de R$ 250,00",
-			flagged: false,
-			logo: "",
-			mainColor: ""
-		*/
 
 		return (
 			<li className="event-list-item" style={{backgroundImage: `url(${item.logo})`}}>

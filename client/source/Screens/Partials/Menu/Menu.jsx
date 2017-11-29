@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
+import { NavLink } from 'react-router-dom';
 
 import Icon from "screens/Partials/Icon/Icon.jsx";
 import { Content } from "screens/Partials/Text/Text.jsx";
@@ -15,12 +16,6 @@ export default class Menu extends Component {
 		}
 	}
 
-	static propTypes = {
-	};
-
-	static defaultProps = {
-	};
-
 	openMenu = () => {
 		this.setState({
 			openMenu: true 
@@ -35,9 +30,15 @@ export default class Menu extends Component {
 	}
 
 	render() {
+
+		const { history } = this.props;
+		const { location } = history;
+		let title = location.state && location.state.title ? location.state.title : "Renderizando página sem título"; 
+
 		return (
+			
 			<div className="menu">
-				<MenuHeader text="Página ativa" iconAction={this.openMenu} />
+				<MenuHeader text={title} iconAction={this.openMenu} />
 				<SideMenu open={this.state.openMenu} closeMenu={this.closeMenu} />
 			</div>
 		);
@@ -86,24 +87,39 @@ class SideMenu extends Component {
 
 		let menuList = [
 			{
-				title: "Próximos eventos",
-				icon: "bookmark"
+				pathname: "my-events",
+				info: {
+					title: "Meus eventos",
+					icon: "pencil"
+				}
 			},
 			{
-				title: "Destacados",
-				icon: "star"
+				pathname: "highlight-events",
+				info: {
+					title: "Destacados",
+					icon: "star"
+				}
 			},
 			{
-				title: "Mapa de eventos",
-				icon: "map-marker"
+				pathname: "future-events",
+				info: {
+					title: "Próximos eventos",
+					icon: "bookmark"
+				}
 			},
 			{
-				title: "Meus eventos",
-				icon: "pencil"
+				pathname: "map-events",
+				info: {
+					title: "Mapa de eventos",
+					icon: "map-marker"
+				}
 			},
 			{
-				title: "Histórico",
-				icon: "clock-o"
+				pathname: "historic",
+				info : {
+					title: "Histórico",
+					icon: "clock-o"
+				}
 			}
 		]
 
@@ -118,8 +134,8 @@ class SideMenu extends Component {
 					<div className="avatar" style={{backgroundImage: `url(${"source/imgs/avatar.jpg"})`}} />
 					<ul>
 						{
-							menuList.map((item, index) => {
-								return <MenuItem active={index == 1} key={index} item={item} />
+							menuList.map((menuItem, index) => {
+								return <MenuItem key={index.toString()} pathname={menuItem.pathname} item={menuItem.info} />
 							})
 						}
 					</ul>
@@ -133,27 +149,23 @@ class SideMenu extends Component {
 	}
 }
 
+
 class MenuItem extends Component {
+    
+    constructor(props) {
+        super(props);
+    }
 
-	constructor(props) {
-		super(props);
-	}
+    render() {
+    	const { item, pathname } = this.props;
 
-	static propTypes = {
-	};
-
-	static defaultProps = {
-		active: false
-	};
-
-	render() {
-		return (
-			<li className={this.props.active ? 'active' : ''}>
-				<Icon size={16} icon={this.props.item.icon} />
-				<Content tag="a">
-					{this.props.item.title}
-				</Content>
-			</li>
-		);
-	}
+        return (
+            <li>
+                <NavLink to={{pathname: `/${pathname}`, state: { title: item.title }}} className="content">
+                	<Icon size={16} icon={item.icon}/>
+                    <Content className="small bold">{item.title}</Content>
+                </NavLink>
+            </li>
+        );
+    }
 }
