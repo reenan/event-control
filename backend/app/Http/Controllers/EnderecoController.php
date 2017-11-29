@@ -58,7 +58,7 @@ class EnderecoController extends Controller
         try {
             $evento = Endereco::find($id);
             $evento->delete();
-            return true;
+            return "OK";
         } catch (\Exception $ex) {
             return response()->json(['error' => $ex->getMessage()], 500);
         }

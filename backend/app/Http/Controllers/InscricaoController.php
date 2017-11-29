@@ -59,7 +59,7 @@ class InscricaoController extends Controller
         try {
             $inscricao = Evento::find($id);
             $inscricao->delete();
-            return true;
+            return "OK";
         } catch (\Exception $ex) {
             return response()->json(['error' => $ex->getMessage()], 500);
         }

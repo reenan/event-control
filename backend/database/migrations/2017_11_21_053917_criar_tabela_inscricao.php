@@ -13,17 +13,15 @@ class CriarTabelaInscricao extends Migration
      */
     public function up()
     {
-        Schema::create('inscricaos', function (Blueprint $table) {
+        Schema::create('inscricaos', function (Blueprint $table)
+        {
+            $table->engine = 'InnoDB';
+
             $table->increments('id');
 
             $table->integer('user_id')->unsigned();
-            // $table->foreign('user_id')->references('id')->on("users");
-
             $table->integer('lote_ingresso_id')->unsigned();
-            // $table->foreign('lote_ingresso_id')->references('id')->on("lote_ingressos");
-
             $table->integer('evento_id')->unsigned();
-            // $table->foreign('evento_id')->references('id')->on("eventos");
 
             $table->boolean('pagamento_realizado');
             $table->boolean('presente');
@@ -39,6 +37,6 @@ class CriarTabelaInscricao extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('inscricaos');
     }
 }

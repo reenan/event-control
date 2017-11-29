@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Inscricao;
+use Log;
 use App\Models\Evento;
 use Illuminate\Http\Request;
 
@@ -23,6 +25,17 @@ class EventoController extends Controller
         }
     }
 
+    public function listarEventos($id)
+    {
+        try
+        {
+            return Inscricao::where("user_id", "=", $id)->get();
+        }
+        catch (\Exception $ex) {
+            return response()->json(['error' => $ex->getMessage()], 500);
+        }
+    }
+
     public function find($id)
     {
         try {
@@ -34,7 +47,8 @@ class EventoController extends Controller
 
     public function store(Request $request)
     {
-        try {
+        try
+        {
             $evento = Evento::create($request->all());
             return $evento;
         } catch (\Exception $ex) {
@@ -58,7 +72,7 @@ class EventoController extends Controller
         try {
             $evento = Evento::find($id);
             $evento->delete();
-            return true;
+            return "OK";
         } catch (\Exception $ex) {
             return response()->json(['error' => $ex->getMessage()], 500);
         }

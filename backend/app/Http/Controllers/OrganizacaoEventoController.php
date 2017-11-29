@@ -58,7 +58,7 @@ class OrganizacaoEventoController extends Controller
         try {
             $organizacaoEvento = OrganizacaoEvento::find($id);
             $organizacaoEvento->delete();
-            return true;
+            return "OK";
         } catch (\Exception $ex) {
             return response()->json(['error' => $ex->getMessage()], 500);
         }
