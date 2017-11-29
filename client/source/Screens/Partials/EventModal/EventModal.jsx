@@ -32,6 +32,10 @@ export default class EventModal extends Component {
 		saveEvent: () => {}
 	}
 
+    componentDidMount() {
+        $('#data_fim').mask('00/00/0000');
+    }
+
 	componentWillReceiveProps(nextProps) {
 		const { activeItem } = nextProps;
 

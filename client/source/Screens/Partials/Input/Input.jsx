@@ -27,10 +27,10 @@ export class InputText extends Component {
 		const { label, value, name, type } = this.props;
 
 		return (
-			<div id={this.props.id} className='input-wrapper input-text'>
+			<div className='input-wrapper input-text'>
 				<label>
 					<span className="label">{label}</span>
-					<input type={type} name={name} value={value} onChange={this.onChange} placeholder={value} />
+					<input id={this.props.id} type={type} name={name} value={value} onChange={this.onChange} placeholder={value} />
 				</label>
 			</div>
 		)
