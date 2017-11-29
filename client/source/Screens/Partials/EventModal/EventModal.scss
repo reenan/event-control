@@ -1,9 +1,25 @@
 @import "source/_mixins.scss";
 @import "source/_variables.scss";
 
+// .createEventButton {
+// 	z-index: 2;
+// 	background-color: #92c67e;
+// 	position: fixed;
+// 	right: 5%;
+// 	bottom: 3%;
+// 	width: 30px;
+// 	height: 30px;
+// 	border-radius: 50%;
+// 	display: grid;
+// 	align-content: center;
+// }
+
+// .p {
+// 	padding-left: 33%;
+// }
 
 .event-modal {
-	z-index: 3;
+	z-index: 10;
 	
 	.modal-content-area {
 		width: 90vw;

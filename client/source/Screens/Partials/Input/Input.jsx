@@ -10,24 +10,27 @@ export class InputText extends Component {
 	}
 
 	static defaultProps = {
+		id: '',
 		label: '',
 		value: '',
 		name: '',
-		onChange: () => {}
+		onChange: () => {},
+		context: this,
+		type: "text"
 	}
 
 	onChange = (event) => {
-		this.props.onChange({name: event.target.name, value: event.target.value});
+		this.props.onChange.call(this.props.context, {field: this.props.id, value: event.target.value});
 	}
 
 	render() {
-		const { label, value, name } = this.props;
+		const { label, value, name, type } = this.props;
 
 		return (
-			<div className='input-wrapper input-text'>
+			<div id={this.props.id} className='input-wrapper input-text'>
 				<label>
 					<span className="label">{label}</span>
-					<input type="text" name={name} value={value} onChange={this.onChange} />
+					<input type={type} name={name} value={value} onChange={this.onChange} placeholder={value} />
 				</label>
 			</div>
 		)
